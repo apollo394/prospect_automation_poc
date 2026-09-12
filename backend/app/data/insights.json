@@ -1,0 +1,261 @@
+[
+  {
+    "id": "in-cf-01",
+    "prospect_id": "apex-metrics",
+    "category": "pain_points",
+    "title": "Positioning ambiguity",
+    "description": "Positioning appears to be a significant concern; buyers cannot distinguish Apex Metrics from category peers.",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev-cf-01",
+      "ev-cf-02"
+    ]
+  },
+  {
+    "id": "in-cf-02",
+    "prospect_id": "apex-metrics",
+    "category": "pain_points",
+    "title": "Site does not support sales conversations",
+    "description": "Sales bypasses the website with PDFs because the homepage and offer pages do not explain value clearly.",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev-cf-04"
+    ]
+  },
+  {
+    "id": "in-cf-03",
+    "prospect_id": "apex-metrics",
+    "category": "pain_points",
+    "title": "Marketing blocked by ticket dependency",
+    "description": "Campaign velocity is limited by reliance on developers for routine page updates.",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev-cf-05"
+    ]
+  },
+  {
+    "id": "in-cf-04",
+    "prospect_id": "apex-metrics",
+    "category": "business_goals",
+    "title": "Increase qualified opportunities",
+    "description": "Primary business goal is qualified pipeline from the website, not raw traffic growth.",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev-cf-03"
+    ]
+  },
+  {
+    "id": "in-cf-05",
+    "prospect_id": "apex-metrics",
+    "category": "business_goals",
+    "title": "Ownable marketing website",
+    "description": "Team wants autonomy to launch and update branded pages without tickets.",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev-cf-05"
+    ]
+  },
+  {
+    "id": "in-cf-06",
+    "prospect_id": "apex-metrics",
+    "category": "business_goals",
+    "title": "Clear differentiation narrative",
+    "description": "Leadership wants a crisp answer to 'what makes us different.'",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev-cf-01",
+      "ev-cf-02"
+    ]
+  },
+  {
+    "id": "in-cf-07",
+    "prospect_id": "apex-metrics",
+    "category": "desired_outcomes",
+    "title": "Phase-one scoped engagement",
+    "description": "Prefer a defined diagnose/build phase before committing to a full rebuild.",
+    "confidence": "medium",
+    "evidence_ids": [
+      "ev-cf-06"
+    ]
+  },
+  {
+    "id": "in-cf-08",
+    "prospect_id": "apex-metrics",
+    "category": "desired_outcomes",
+    "title": "Live before spring launch",
+    "description": "Target window: discovery this quarter, launch support before spring campaigns.",
+    "confidence": "medium",
+    "evidence_ids": [
+      "ev-cf-07"
+    ]
+  },
+  {
+    "id": "in-cf-09",
+    "prospect_id": "apex-metrics",
+    "category": "current_situation",
+    "title": "Dated homepage, PDF workaround",
+    "description": "Current site feels dated; sales uses offline collateral to compensate.",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev-cf-04"
+    ]
+  },
+  {
+    "id": "in-cf-10",
+    "prospect_id": "apex-metrics",
+    "category": "services_discussed",
+    "title": "Strategy, copy, and site foundation",
+    "description": "Conversation covered website strategy, messaging/copy, and a rebuild path marketing can operate.",
+    "confidence": "medium",
+    "evidence_ids": [
+      "ev-cf-03",
+      "ev-cf-04",
+      "ev-cf-05"
+    ]
+  },
+  {
+    "id": "in-cf-11",
+    "prospect_id": "apex-metrics",
+    "category": "decision_makers",
+    "title": "Jordan economic buyer; Sam day-to-day",
+    "description": "Jordan Ellis is economic buyer; Sam Ortiz owns marketing operations collaboration.",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev-cf-08"
+    ]
+  },
+  {
+    "id": "in-cf-12",
+    "prospect_id": "apex-metrics",
+    "category": "timeline",
+    "title": "This quarter discovery \u2192 spring live",
+    "description": "Discovery preferred this quarter with something live before spring launch window.",
+    "confidence": "medium",
+    "evidence_ids": [
+      "ev-cf-07"
+    ]
+  },
+  {
+    "id": "in-cf-13",
+    "prospect_id": "apex-metrics",
+    "category": "budget_signals",
+    "title": "Budget forming; phase-one first",
+    "description": "Budget not finalized; leadership wants scoped phase-one before full rebuild commitment.",
+    "confidence": "medium",
+    "evidence_ids": [
+      "ev-cf-06"
+    ]
+  },
+  {
+    "id": "in-cf-14",
+    "prospect_id": "apex-metrics",
+    "category": "objections",
+    "title": "Full rebuild commitment hesitation",
+    "description": "Resistance to committing to a full rebuild without a defined phase-one scope.",
+    "confidence": "medium",
+    "evidence_ids": [
+      "ev-cf-06"
+    ]
+  },
+  {
+    "id": "in-cf-15",
+    "prospect_id": "apex-metrics",
+    "category": "open_questions",
+    "title": "Current CRM and attribution stack?",
+    "description": "Stack details for CRM, forms, and attribution were not confirmed on the call.",
+    "confidence": "low",
+    "evidence_ids": []
+  },
+  {
+    "id": "in-cf-16",
+    "prospect_id": "apex-metrics",
+    "category": "open_questions",
+    "title": "Which ICP segments convert today?",
+    "description": "Need clarity on priority audiences and which pages currently generate opportunities.",
+    "confidence": "low",
+    "evidence_ids": []
+  },
+  {
+    "id": "in-cf-17",
+    "prospect_id": "apex-metrics",
+    "category": "open_questions",
+    "title": "Content ownership model?",
+    "description": "Who drafts, approves, and publishes post-launch was not defined.",
+    "confidence": "low",
+    "evidence_ids": []
+  },
+  {
+    "id": "in-cf-18",
+    "prospect_id": "apex-metrics",
+    "category": "open_questions",
+    "title": "Brand guidelines currency?",
+    "description": "Whether brand guidelines are current and usable for web was not confirmed.",
+    "confidence": "low",
+    "evidence_ids": []
+  },
+  {
+    "id": "in-cf-19",
+    "prospect_id": "apex-metrics",
+    "category": "open_questions",
+    "title": "SEO / AI search priorities?",
+    "description": "Relative priority of classic SEO vs AI search readiness needs confirmation.",
+    "confidence": "low",
+    "evidence_ids": []
+  },
+  {
+    "id": "in-cf-20",
+    "prospect_id": "apex-metrics",
+    "category": "opportunities",
+    "title": "Positioning + message architecture",
+    "description": "Opportunity to define a differentiation narrative that sales and web can share.",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev-cf-01",
+      "ev-cf-02"
+    ]
+  },
+  {
+    "id": "in-cf-21",
+    "prospect_id": "apex-metrics",
+    "category": "opportunities",
+    "title": "Homepage and offer page rewrite",
+    "description": "Rebuild key conversion pages so sales stops relying on PDFs.",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev-cf-04"
+    ]
+  },
+  {
+    "id": "in-cf-22",
+    "prospect_id": "apex-metrics",
+    "category": "opportunities",
+    "title": "Marketing-owned CMS templates",
+    "description": "Enable campaign landing pages without ticket bottlenecks.",
+    "confidence": "high",
+    "evidence_ids": [
+      "ev-cf-05"
+    ]
+  },
+  {
+    "id": "in-cf-23",
+    "prospect_id": "apex-metrics",
+    "category": "opportunities",
+    "title": "Phased diagnose \u2192 build path",
+    "description": "Structure engagement as phase-one diagnose/build aligned to budget comfort.",
+    "confidence": "medium",
+    "evidence_ids": [
+      "ev-cf-06"
+    ]
+  },
+  {
+    "id": "in-cf-24",
+    "prospect_id": "apex-metrics",
+    "category": "opportunities",
+    "title": "Measurement for qualified opportunities",
+    "description": "Instrument paths that map to qualified opportunities, not vanity traffic.",
+    "confidence": "medium",
+    "evidence_ids": [
+      "ev-cf-03"
+    ]
+  }
+]

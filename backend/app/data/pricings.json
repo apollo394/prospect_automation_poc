@@ -1,0 +1,71 @@
+{
+  "apex-metrics": {
+    "id": "price-apex-metrics",
+    "prospect_id": "apex-metrics",
+    "status": "needs_human_review",
+    "review_state": "ai_generated",
+    "approved_by": null,
+    "currency": "USD",
+    "line_items": [
+      {
+        "service_id": "svc-website-strategy",
+        "name": "Website Strategy",
+        "quantity_label": "1 phase",
+        "unit_price": 8500,
+        "amount": 8500,
+        "optional": false,
+        "fast_rationale": "Strategic"
+      },
+      {
+        "service_id": "svc-website-copy",
+        "name": "Website Copy",
+        "quantity_label": "Core page set",
+        "unit_price": 6200,
+        "amount": 6200,
+        "optional": false,
+        "fast_rationale": "Strategic"
+      },
+      {
+        "service_id": "svc-seo",
+        "name": "SEO",
+        "quantity_label": "Foundation",
+        "unit_price": 4800,
+        "amount": 4800,
+        "optional": false,
+        "fast_rationale": "Strategic and Trackable"
+      },
+      {
+        "service_id": "svc-development",
+        "name": "Development",
+        "quantity_label": "Phase one",
+        "unit_price": 18500,
+        "amount": 18500,
+        "optional": false,
+        "fast_rationale": "Flexible, Accessible, and Trackable"
+      },
+      {
+        "service_id": "svc-ongoing-support",
+        "name": "Ongoing Support",
+        "quantity_label": "3 months (optional)",
+        "unit_price": 3500,
+        "amount": 10500,
+        "optional": true,
+        "fast_rationale": "Trackable"
+      }
+    ],
+    "subtotal": 38000,
+    "discount_label": "Phase-one package courtesy",
+    "discount_amount": 2000,
+    "total": 36000,
+    "notes": "Subtotal covers required phase-one services only. Optional ongoing support is listed separately and not included in the package total. Demo rate card — not a live quote.",
+    "budget_context": {
+      "summary": "Budget is still forming, and leadership asked to see a scoped phase-one before committing to a full rebuild. This package keeps the initial engagement focused while making the optional ongoing work visible separately.",
+      "constraints": [
+        "Present a scoped phase-one before a full rebuild commitment.",
+        "Keep ongoing support optional and outside the package total.",
+        "Confirm final investment comfort with the economic buyer."
+      ],
+      "evidence_ids": ["ev-cf-06", "ev-cf-07"]
+    }
+  }
+}

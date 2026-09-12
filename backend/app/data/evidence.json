@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ev-cf-01",
+    "prospect_id": "apex-metrics",
+    "source": "Strategy Call",
+    "source_type": "transcript",
+    "timestamp": "18:42",
+    "quote": "Positioning is a significant concern. Prospects ask what makes us different and we don't have a clean answer.",
+    "speaker": "Jordan Ellis"
+  },
+  {
+    "id": "ev-cf-02",
+    "prospect_id": "apex-metrics",
+    "source": "Strategy Call",
+    "source_type": "transcript",
+    "timestamp": "04:12",
+    "quote": "We're still figuring out how to talk about what we do without sounding like every other analytics vendor.",
+    "speaker": "Jordan Ellis"
+  },
+  {
+    "id": "ev-cf-03",
+    "prospect_id": "apex-metrics",
+    "source": "Strategy Call",
+    "source_type": "transcript",
+    "timestamp": "08:40",
+    "quote": "Our primary goal this year is to increase qualified opportunities from the website, not just traffic.",
+    "speaker": "Sam Ortiz"
+  },
+  {
+    "id": "ev-cf-04",
+    "prospect_id": "apex-metrics",
+    "source": "Strategy Call",
+    "source_type": "transcript",
+    "timestamp": "12:05",
+    "quote": "The homepage feels dated, and sales keeps sending people to PDFs because the site doesn't explain the offer well.",
+    "speaker": "Jordan Ellis"
+  },
+  {
+    "id": "ev-cf-05",
+    "prospect_id": "apex-metrics",
+    "source": "Strategy Call",
+    "source_type": "transcript",
+    "timestamp": "22:18",
+    "quote": "We need marketing to update pages without opening tickets every time. That dependency is killing campaign speed.",
+    "speaker": "Sam Ortiz"
+  },
+  {
+    "id": "ev-cf-06",
+    "prospect_id": "apex-metrics",
+    "source": "Strategy Call",
+    "source_type": "transcript",
+    "timestamp": "27:50",
+    "quote": "Budget is still forming, but leadership wants to see a scoped phase-one before committing to a full rebuild.",
+    "speaker": "Jordan Ellis"
+  },
+  {
+    "id": "ev-cf-07",
+    "prospect_id": "apex-metrics",
+    "source": "Strategy Call",
+    "source_type": "transcript",
+    "timestamp": "31:10",
+    "quote": "Ideal timeline would be discovery this quarter and something live before our spring launch window.",
+    "speaker": "Sam Ortiz"
+  },
+  {
+    "id": "ev-cf-08",
+    "prospect_id": "apex-metrics",
+    "source": "Strategy Call",
+    "source_type": "transcript",
+    "timestamp": "36:22",
+    "quote": "I'm the economic buyer. Sam owns day-to-day marketing operations and will be the main collaborator.",
+    "speaker": "Jordan Ellis"
+  }
+]

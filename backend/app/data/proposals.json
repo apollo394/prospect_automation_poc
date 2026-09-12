@@ -1,0 +1,85 @@
+{
+  "apex-metrics": {
+    "id": "prop-apex-metrics",
+    "prospect_id": "apex-metrics",
+    "status": "needs_human_review",
+    "review_state": "ai_generated",
+    "approved_by": null,
+    "title": "Proposal: Apex Metrics Website Strategy & Phase-One Build",
+    "prepared_for": "Apex Metrics leadership",
+    "prepared_by": "Lei Lani Fera · SimpliCreative",
+    "valid_until": "2026-09-30",
+    "executive_summary": "Apex Metrics needs clearer category positioning and a website that converts research traffic into qualified conversations. This proposal scopes a diagnose-and-build engagement that delivers message architecture, core page narrative, SEO foundation, and a marketing-owned phase-one build — with optional ongoing support after launch.",
+    "strategy_snapshot": "Strategy call evidence points to differentiation pressure, PDF-driven sales workarounds, and limited marketing autonomy on the current site. A phased approach matches budget comfort while protecting the spring launch window.",
+    "scope_snapshot": "Three phases: Diagnose & Message Architecture → Core Narrative & SEO Foundation → Phase-One Build. Excludes brand identity overhaul, paid media, and product engineering. Optional retainer available post-launch.",
+    "investment_summary": "Phase-one investment: $36,000 USD after courtesy discount (required services subtotal $38,000). Optional ongoing support at $3,500/month is listed separately and not included in the package total.",
+    "next_steps": [
+      "Approve this proposal and confirm phase-one start date",
+      "Share brand guidelines, CMS access, and analytics credentials",
+      "Schedule positioning workshop with economic buyer and marketing lead",
+      "Kick off Diagnose phase within five business days of approval"
+    ],
+    "closing_note": "SimpliCreative prepares the work; your team remains the decision owner. This draft is for internal review before client presentation.",
+    "why_this_recommendation": [
+      {
+        "title": "Address the underlying friction first",
+        "detail": "The call shows that Apex needs clearer differentiation and a stronger buyer path before a full build can solve the right problem.",
+        "evidence_ids": ["ev-cf-01", "ev-cf-02", "ev-cf-04"]
+      },
+      {
+        "title": "Support qualified opportunities, not traffic alone",
+        "detail": "The scope connects message architecture, core-page copy, SEO, and measurement to the stated goal of increasing qualified opportunities.",
+        "evidence_ids": ["ev-cf-03"]
+      },
+      {
+        "title": "Restore marketing autonomy",
+        "detail": "The phase-one build includes reusable, marketing-owned components so campaign work does not depend on engineering tickets.",
+        "evidence_ids": ["ev-cf-05"]
+      },
+      {
+        "title": "Respect the current investment decision",
+        "detail": "A phased package gives leadership a scoped first commitment while keeping optional ongoing support separate.",
+        "evidence_ids": ["ev-cf-06", "ev-cf-07"]
+      }
+    ],
+    "knowledge_note": "Generated using SimpliCreative's current approved services, pricing, positioning, and proposal standards.",
+    "fast_readiness": [
+      {
+        "pillar": "flexible",
+        "label": "Flexible",
+        "status": "needs_validation",
+        "finding": "Marketing needs to publish and update pages without engineering tickets.",
+        "evidence_ids": ["ev-cf-05"],
+        "suggested_action": "Confirm CMS, reusable page modules, and the approval workflow.",
+        "service_ids": ["svc-development"]
+      },
+      {
+        "pillar": "accessible",
+        "label": "Accessible",
+        "status": "needs_validation",
+        "finding": "Responsive behavior, accessibility baseline, and performance have not been validated in this call.",
+        "evidence_ids": [],
+        "suggested_action": "Run accessibility, responsive, and performance review during discovery.",
+        "service_ids": ["svc-development"]
+      },
+      {
+        "pillar": "strategic",
+        "label": "Strategic",
+        "status": "needs_work",
+        "finding": "Positioning and the core site narrative do not explain differentiation or the buyer path clearly enough.",
+        "evidence_ids": ["ev-cf-01", "ev-cf-04"],
+        "suggested_action": "Build message architecture, conversion paths, and search-ready content structure.",
+        "service_ids": ["svc-website-strategy", "svc-website-copy", "svc-seo"]
+      },
+      {
+        "pillar": "trackable",
+        "label": "Trackable",
+        "status": "needs_work",
+        "finding": "The team wants qualified opportunities, but first-touch-to-conversion measurement is not defined.",
+        "evidence_ids": ["ev-cf-03"],
+        "suggested_action": "Define analytics events, attribution fields, and reporting for qualified opportunities.",
+        "service_ids": ["svc-seo", "svc-development"]
+      }
+    ]
+  }
+}

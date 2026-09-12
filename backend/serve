@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Start API on project default port 8002 (from .env UVICORN_PORT).
+set -euo pipefail
+cd "$(dirname "$0")"
+ROOT="$(cd .. && pwd)"
+PY="$ROOT/.venv/bin/python"
+if [[ ! -x "$PY" ]]; then
+  PY="${PYTHON:-python3}"
+fi
+# python -m uvicorn: venv console_scripts can break when the project is moved.
+exec "$PY" -m dotenv run -- "$PY" -m uvicorn main:app --reload --host 127.0.0.1 "$@"

@@ -1,0 +1,61 @@
+{
+  "apex-metrics": {
+    "id": "scope-apex-metrics",
+    "prospect_id": "apex-metrics",
+    "status": "needs_human_review",
+    "review_state": "ai_generated",
+    "approved_by": null,
+    "title": "Apex Metrics — Phase One Engagement Scope",
+    "summary": "A diagnose-and-build phase that clarifies positioning, rewrites core pages, establishes SEO foundations, and delivers a marketing-owned site foundation before optional ongoing support.",
+    "phases": [
+      {
+        "id": "phase-1",
+        "name": "Diagnose & Message Architecture",
+        "duration": "2–3 weeks",
+        "deliverables": [
+          "Positioning and differentiation workshop",
+          "Buyer-path and conversion architecture",
+          "Site and messaging audit with prioritized fixes"
+        ],
+        "services": ["svc-website-strategy"],
+        "fast_pillars": ["Strategic"]
+      },
+      {
+        "id": "phase-2",
+        "name": "Core Narrative & SEO Foundation",
+        "duration": "3–4 weeks",
+        "deliverables": [
+          "Homepage and primary offer page copy",
+          "Message map for sales enablement",
+          "Technical SEO and IA foundation for discovery"
+        ],
+        "services": ["svc-website-copy", "svc-seo"],
+        "fast_pillars": ["Strategic", "Trackable"]
+      },
+      {
+        "id": "phase-3",
+        "name": "Phase-One Build",
+        "duration": "4–6 weeks",
+        "deliverables": [
+          "Template-driven WordPress or Webflow build",
+          "Marketing-owned landing page workflow",
+          "Instrumentation for qualified opportunity paths"
+        ],
+        "services": ["svc-development"],
+        "fast_pillars": ["Flexible", "Accessible", "Trackable"]
+      }
+    ],
+    "exclusions": [
+      "Full brand identity redesign",
+      "Paid media buying or ad creative production",
+      "Custom application / product engineering outside the marketing site",
+      "Ongoing support retainer (optional add-on after launch)"
+    ],
+    "assumptions": [
+      "Economic buyer and marketing lead available for two workshops",
+      "Brand guidelines and current CMS access provided in week one",
+      "Budget comfort aligns to a phased diagnose-and-build engagement"
+    ],
+    "timeline_note": "Target ~10–12 weeks calendar time with a spring launch window; schedule locks after scope approval."
+  }
+}

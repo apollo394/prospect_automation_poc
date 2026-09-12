@@ -1,0 +1,127 @@
+{
+  "apex-metrics": {
+    "id": "a-apex-metrics",
+    "prospect_id": "apex-metrics",
+    "status": "needs_human_review",
+    "review_state": "ai_generated",
+    "approved_by": null,
+    "executive_summary": "Apex Metrics is a B2B analytics-adjacent company seeking clearer market positioning and a website that produces qualified opportunities. A strategy call revealed strong urgency around differentiation, sales enablement through the site, and marketing autonomy. A phased diagnose-and-build engagement is the best fit while budget is still forming.",
+    "business_context": "Lean marketing leadership is collaborating with an economic buyer who wants measurable pipeline impact. The current site is treated as a weak support asset; sales compensates with PDFs. The team wants a foundation they can operate without ticket bottlenecks.",
+    "current_challenges": [
+      "Positioning does not clearly differentiate Apex Metrics from category peers.",
+      "Homepage and offer pages fail to explain the offer, forcing sales workarounds.",
+      "Marketing cannot ship campaign pages without developer tickets."
+    ],
+    "business_goals": [
+      "Increase qualified opportunities originating from the website.",
+      "Establish a shared differentiation narrative for sales and marketing.",
+      "Give marketing an ownable CMS workflow for landing pages and updates."
+    ],
+    "key_opportunities": [
+      "Message architecture and positioning workshop feeding web and sales.",
+      "Rewrite of homepage and primary offer pages.",
+      "Template-driven WordPress/Webflow build for campaign velocity.",
+      "Instrumentation focused on qualified opportunity paths.",
+      "Phased scope that matches budget comfort."
+    ],
+    "risks": [
+      "Budget not finalized \u2014 oversized proposals may stall decision.",
+      "Unconfirmed MarTech stack may delay attribution recommendations.",
+      "Spring launch window compresses delivery if discovery slips."
+    ],
+    "information_gaps": [
+      "CRM and attribution stack details",
+      "Priority ICP segments and converting pages today",
+      "Content ownership and approval workflow",
+      "Currency of brand guidelines",
+      "SEO vs AI search priority ranking"
+    ],
+    "recommended_next_step": "Run a focused diagnose phase: positioning and message architecture, site and messaging audit, and a phase-one build recommendation \u2014 then present a scoped proposal.",
+    "recommended_services": [
+      {
+        "service_id": "svc-website-strategy",
+        "name": "Website Strategy",
+        "reason": "Positioning and buyer-path clarity before design or build.",
+        "quantity": "1 phase",
+        "status": "proposed"
+      },
+      {
+        "service_id": "svc-website-copy",
+        "name": "Website Copy",
+        "reason": "Replace PDF workarounds with clear offer and homepage narrative.",
+        "quantity": "Core page set",
+        "status": "proposed"
+      },
+      {
+        "service_id": "svc-seo",
+        "name": "SEO",
+        "reason": "Structure discovery paths toward qualified opportunities.",
+        "quantity": "Foundation",
+        "status": "proposed"
+      },
+      {
+        "service_id": "svc-development",
+        "name": "Development",
+        "reason": "Marketing-owned templates to remove ticket dependency.",
+        "quantity": "Phase one",
+        "status": "proposed"
+      },
+      {
+        "service_id": "svc-ongoing-support",
+        "name": "Ongoing Support",
+        "reason": "Optional after launch to keep iteration and measurement moving.",
+        "quantity": "TBD",
+        "status": "optional"
+      }
+    ],
+    "framework": {
+      "name": "Strategy Framework",
+      "status": "methodology_configuration_pending",
+      "note": "Evaluation criteria and scoring rules will be configured after SimpliCreative provides process documentation. This POC does not invent proprietary assessment rules."
+    },
+    "diagnosis": {
+      "summary": "Apex does not have a website problem in isolation. The call points to a positioning and buyer-path problem that is limiting qualified opportunities and forcing sales to compensate with PDFs. The recommended phase starts by clarifying the message and conversion path before committing to a full build.",
+      "primary_friction": "Positioning and buyer-path clarity are weakening the website's credibility and qualified-pipeline conversion.",
+      "affected_growth_drivers": ["Credibility", "Performance", "Agility"],
+      "evidence_ids": ["ev-cf-01", "ev-cf-02", "ev-cf-04", "ev-cf-05"]
+    },
+    "fast_readiness": [
+      {
+        "pillar": "flexible",
+        "label": "Flexible",
+        "status": "needs_validation",
+        "finding": "Marketing needs to publish and update pages without engineering tickets.",
+        "evidence_ids": ["ev-cf-05"],
+        "suggested_action": "Confirm CMS, reusable page modules, and the approval workflow.",
+        "service_ids": ["svc-development"]
+      },
+      {
+        "pillar": "accessible",
+        "label": "Accessible",
+        "status": "needs_validation",
+        "finding": "Responsive behavior, accessibility baseline, and performance have not been validated in this call.",
+        "evidence_ids": [],
+        "suggested_action": "Run accessibility, responsive, and performance review during discovery.",
+        "service_ids": ["svc-development"]
+      },
+      {
+        "pillar": "strategic",
+        "label": "Strategic",
+        "status": "needs_work",
+        "finding": "Positioning and the core site narrative do not explain differentiation or the buyer path clearly enough.",
+        "evidence_ids": ["ev-cf-01", "ev-cf-04"],
+        "suggested_action": "Build message architecture, conversion paths, and search-ready content structure.",
+        "service_ids": ["svc-website-strategy", "svc-website-copy", "svc-seo"]
+      },
+      {
+        "pillar": "trackable",
+        "label": "Trackable",
+        "status": "needs_work",
+        "finding": "The team wants qualified opportunities, but first-touch-to-conversion measurement is not defined.",
+        "evidence_ids": ["ev-cf-03"],
+        "suggested_action": "Define analytics events, attribution fields, and reporting for qualified opportunities.",
+        "service_ids": ["svc-seo", "svc-development"]
+      }
+    ]
+  }
+}

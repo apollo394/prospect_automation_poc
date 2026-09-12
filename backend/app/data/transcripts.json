@@ -1,0 +1,57 @@
+[
+  {
+    "id": "tx-apex-metrics-1",
+    "prospect_id": "apex-metrics",
+    "title": "Strategy Call \u2014 Apex Metrics",
+    "source": "Fathom",
+    "recorded_at": "2026-08-20T14:00:00Z",
+    "duration_minutes": 42,
+    "participants": [
+      "Lei Lani Fera",
+      "Jordan Ellis (Apex Metrics)",
+      "Sam Ortiz (Apex Metrics)"
+    ],
+    "segments": [
+      {
+        "timestamp": "04:12",
+        "speaker": "Jordan Ellis",
+        "text": "We're still figuring out how to talk about what we do without sounding like every other analytics vendor."
+      },
+      {
+        "timestamp": "08:40",
+        "speaker": "Sam Ortiz",
+        "text": "Our primary goal this year is to increase qualified opportunities from the website, not just traffic."
+      },
+      {
+        "timestamp": "12:05",
+        "speaker": "Jordan Ellis",
+        "text": "The homepage feels dated, and sales keeps sending people to PDFs because the site doesn't explain the offer well."
+      },
+      {
+        "timestamp": "18:42",
+        "speaker": "Jordan Ellis",
+        "text": "Positioning is a significant concern. Prospects ask what makes us different and we don't have a clean answer."
+      },
+      {
+        "timestamp": "22:18",
+        "speaker": "Sam Ortiz",
+        "text": "We need marketing to update pages without opening tickets every time. That dependency is killing campaign speed."
+      },
+      {
+        "timestamp": "27:50",
+        "speaker": "Jordan Ellis",
+        "text": "Budget is still forming, but leadership wants to see a scoped phase-one before committing to a full rebuild."
+      },
+      {
+        "timestamp": "31:10",
+        "speaker": "Sam Ortiz",
+        "text": "Ideal timeline would be discovery this quarter and something live before our spring launch window."
+      },
+      {
+        "timestamp": "36:22",
+        "speaker": "Jordan Ellis",
+        "text": "I'm the economic buyer. Sam owns day-to-day marketing operations and will be the main collaborator."
+      }
+    ]
+  }
+]

@@ -1,0 +1,11 @@
+[
+  {
+    "id": "fw-strategy",
+    "name": "Strategy Framework",
+    "status": "methodology_configuration_pending",
+    "description": "Placeholder for SimpliCreative strategic assessment methodology. Criteria, evaluation rules, and scoring will be configured when process documentation is provided.",
+    "criteria": [],
+    "evaluation_rules": [],
+    "note": "Do not treat this as SimpliCreative's proprietary FAST website framework. FAST on the public site describes Flexible, Accessible, Strategic, Trackable website delivery — separate from this assessment engine."
+  }
+]

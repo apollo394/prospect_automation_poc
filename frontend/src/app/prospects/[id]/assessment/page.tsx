@@ -1,0 +1,1 @@
+"use client"; import { useParams,useRouter } from "next/navigation"; import { useEffect } from "react"; export default function AssessmentPage(){const {id}=useParams<{id:string}>();const router=useRouter();useEffect(()=>{router.replace(`/prospects/${id}/recommendation`)},[id,router]);return <p className="text-sc-muted">Opening recommendation…</p>}

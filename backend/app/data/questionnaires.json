@@ -1,0 +1,64 @@
+{
+  "apex-metrics": {
+    "id": "q-apex-metrics",
+    "prospect_id": "apex-metrics",
+    "status": "ai_generated",
+    "title": "AI Generated Questionnaire",
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What is your primary business goal for the website this year?",
+        "ai_suggested_answer": "Increase qualified opportunities from the website, not just traffic.",
+        "status": "pending",
+        "evidence_ids": [
+          "ev-cf-03"
+        ]
+      },
+      {
+        "id": "q2",
+        "prompt": "What is the biggest friction in how buyers understand your offer today?",
+        "ai_suggested_answer": "Positioning is unclear; prospects cannot articulate what makes Apex Metrics different.",
+        "status": "pending",
+        "evidence_ids": [
+          "ev-cf-01",
+          "ev-cf-02"
+        ]
+      },
+      {
+        "id": "q3",
+        "prompt": "Who will own day-to-day website updates after launch?",
+        "ai_suggested_answer": "Sam Ortiz (marketing operations), with Jordan Ellis as economic buyer.",
+        "status": "pending",
+        "evidence_ids": [
+          "ev-cf-08",
+          "ev-cf-05"
+        ]
+      },
+      {
+        "id": "q4",
+        "prompt": "What timeline constraints should scope respect?",
+        "ai_suggested_answer": "Discovery this quarter; something live before the spring launch window.",
+        "status": "pending",
+        "evidence_ids": [
+          "ev-cf-07"
+        ]
+      },
+      {
+        "id": "q5",
+        "prompt": "How should investment be staged given current budget comfort?",
+        "ai_suggested_answer": "Prefer a scoped phase-one before committing to a full rebuild.",
+        "status": "pending",
+        "evidence_ids": [
+          "ev-cf-06"
+        ]
+      },
+      {
+        "id": "q6",
+        "prompt": "Which systems must the website connect to for attribution?",
+        "ai_suggested_answer": "Not confirmed on the call \u2014 needs follow-up (CRM, forms, analytics).",
+        "status": "pending",
+        "evidence_ids": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "prospect_id": "abc-company",
+    "title": "Strategy Call — ABC Company",
+    "source": "Fathom",
+    "duration_minutes": 36,
+    "participants": ["Lei Lani Fera", "Maya Chen (ABC Company)", "Evan Brooks (ABC Company)"],
+    "segments": [
+      {"timestamp": "03:10", "speaker": "Maya Chen", "text": "Our site still looks like a pre-Series B company, and enterprise buyers do not see the depth of our security platform."},
+      {"timestamp": "08:25", "speaker": "Evan Brooks", "text": "We need the site to support the fundraising story and give sales a clear enterprise narrative before the launch."},
+      {"timestamp": "14:40", "speaker": "Maya Chen", "text": "WordPress has become hard to maintain. Marketing needs approved page templates we can use without a developer."},
+      {"timestamp": "21:15", "speaker": "Evan Brooks", "text": "Accessibility and performance matter because our buyers include regulated financial institutions."},
+      {"timestamp": "27:30", "speaker": "Maya Chen", "text": "We need to see which partner and campaign sources turn into qualified demos."},
+      {"timestamp": "32:50", "speaker": "Evan Brooks", "text": "A phased engagement works if discovery starts this quarter and the core site is ready for the Series B announcement."}
+    ]
+  },
+  {
+    "prospect_id": "xyz-corp",
+    "title": "Strategy Call — XYZ Corp",
+    "source": "Fathom",
+    "duration_minutes": 48,
+    "participants": ["Lei Lani Fera", "Priya Nair (XYZ Corp)", "Daniel Ross (XYZ Corp)"],
+    "segments": [
+      {"timestamp": "05:05", "speaker": "Priya Nair", "text": "We acquired three SaaS products and each brand now has a separate site, message, and conversion flow."},
+      {"timestamp": "11:20", "speaker": "Daniel Ross", "text": "Buyers cannot tell when products work together, so cross-sell conversations start from scratch."},
+      {"timestamp": "17:45", "speaker": "Priya Nair", "text": "We need a shared design and template system, but each product team still needs room for its own campaign pages."},
+      {"timestamp": "25:10", "speaker": "Daniel Ross", "text": "The new system needs to meet accessibility standards across every product site."},
+      {"timestamp": "33:35", "speaker": "Priya Nair", "text": "We want one reporting view that shows source, product interest, and conversion across the portfolio."},
+      {"timestamp": "42:00", "speaker": "Daniel Ross", "text": "Start with the highest-revenue product and create a repeatable rollout plan for the other two."}
+    ]
+  },
+  {
+    "prospect_id": "northline-health",
+    "title": "Strategy Call — Northline Health",
+    "source": "Fathom",
+    "duration_minutes": 39,
+    "participants": ["Lei Lani Fera", "Dr. Aisha Patel (Northline Health)", "Noah Grant (Northline Health)"],
+    "segments": [
+      {"timestamp": "04:30", "speaker": "Dr. Aisha Patel", "text": "Patients and referring providers struggle to find the right service line and location on the current site."},
+      {"timestamp": "10:10", "speaker": "Noah Grant", "text": "We need clearer referral pathways, especially for our specialty clinics."},
+      {"timestamp": "16:20", "speaker": "Dr. Aisha Patel", "text": "Accessibility confidence is non-negotiable for our patient population and compliance team."},
+      {"timestamp": "22:40", "speaker": "Noah Grant", "text": "Our communications team needs approved modules to publish physician and service updates quickly."},
+      {"timestamp": "29:05", "speaker": "Dr. Aisha Patel", "text": "We cannot show which campaigns produce completed referral forms or appointments."},
+      {"timestamp": "35:15", "speaker": "Noah Grant", "text": "We would like a focused first phase before committing to the full network rollout."}
+    ]
+  }
+]

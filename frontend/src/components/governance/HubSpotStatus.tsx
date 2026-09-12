@@ -1,0 +1,2 @@
+import { RefreshCw } from "lucide-react";
+export function HubSpotStatus({ status = "ready" }: { status?: string }) { return <div className="inline-flex items-center gap-2 rounded-full border border-sc-line bg-white px-3 py-1.5 text-xs text-sc-muted"><span className="h-2 w-2 rounded-full bg-sc-accent" aria-hidden /><span>Simulated HubSpot update</span><span className="sr-only">Status: {status}</span><RefreshCw className="h-3.5 w-3.5" /></div>; }

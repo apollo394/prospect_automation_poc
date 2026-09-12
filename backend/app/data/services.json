@@ -1,0 +1,47 @@
+[
+  {
+    "id": "svc-website-strategy",
+    "name": "Website Strategy",
+    "description": "Audience, message, and conversion architecture before design.",
+    "configurable": true,
+    "unit_price": 8500,
+    "unit": "phase",
+    "currency": "USD"
+  },
+  {
+    "id": "svc-website-copy",
+    "name": "Website Copy",
+    "description": "Messaging and page copy aligned to buyer decisions.",
+    "configurable": true,
+    "unit_price": 6200,
+    "unit": "page_set",
+    "currency": "USD"
+  },
+  {
+    "id": "svc-seo",
+    "name": "SEO",
+    "description": "Structure and content for discovery and AI search readiness.",
+    "configurable": true,
+    "unit_price": 4800,
+    "unit": "foundation",
+    "currency": "USD"
+  },
+  {
+    "id": "svc-development",
+    "name": "Development",
+    "description": "WordPress or Webflow build with marketing autonomy.",
+    "configurable": true,
+    "unit_price": 18500,
+    "unit": "phase",
+    "currency": "USD"
+  },
+  {
+    "id": "svc-ongoing-support",
+    "name": "Ongoing Support",
+    "description": "Continuous guidance and execution partnership.",
+    "configurable": true,
+    "unit_price": 3500,
+    "unit": "month",
+    "currency": "USD"
+  }
+]
