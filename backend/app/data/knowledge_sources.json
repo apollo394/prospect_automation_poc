@@ -1,0 +1,752 @@
+[
+  {
+    "id": "00_Start_Here__ENG-002_SimpliCreative_Engineer_Handoff_Manifest_v1.4.md",
+    "file_name": "ENG-002_SimpliCreative_Engineer_Handoff_Manifest_v1.4.md",
+    "title": "ENG-002 SimpliCreative Engineer Handoff Manifest",
+    "folder": "00_Start_Here",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/00_Start_Here/ENG-002_SimpliCreative_Engineer_Handoff_Manifest_v1.4.md",
+    "source_id": "ENG-002",
+    "version": "v1.4",
+    "extension": "md"
+  },
+  {
+    "id": "00_Start_Here__START-HERE_SimpliCreative_Second_Brain_Working_Context_v1.0.md",
+    "file_name": "START-HERE_SimpliCreative_Second_Brain_Working_Context_v1.0.md",
+    "title": "START-HERE SimpliCreative Second Brain Working Context",
+    "folder": "00_Start_Here",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/00_Start_Here/START-HERE_SimpliCreative_Second_Brain_Working_Context_v1.0.md",
+    "source_id": "START-HERE",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "01_Governance__ENG-003_SimpliCreative_Corpus_Cleanup_and_Classification_Plan_v1.1.md",
+    "file_name": "ENG-003_SimpliCreative_Corpus_Cleanup_and_Classification_Plan_v1.1.md",
+    "title": "ENG-003 SimpliCreative Corpus Cleanup and Classification Plan",
+    "folder": "01_Governance",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/01_Governance/ENG-003_SimpliCreative_Corpus_Cleanup_and_Classification_Plan_v1.1.md",
+    "source_id": "ENG-003",
+    "version": "v1.1",
+    "extension": "md"
+  },
+  {
+    "id": "01_Governance__GOV-001_SimpliCreative_AI_Second_Brain_Governance_and_Intelligence_Architecture_v1.3.md",
+    "file_name": "GOV-001_SimpliCreative_AI_Second_Brain_Governance_and_Intelligence_Architecture_v1.3.md",
+    "title": "GOV-001 SimpliCreative AI Second Brain Governance and Intelligence Architecture",
+    "folder": "01_Governance",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/01_Governance/GOV-001_SimpliCreative_AI_Second_Brain_Governance_and_Intelligence_Architecture_v1.3.md",
+    "source_id": "GOV-001",
+    "version": "v1.3",
+    "extension": "md"
+  },
+  {
+    "id": "01_Governance__GOV-002_SimpliCreative_Second_Brain_Source_Register_v1.4.md",
+    "file_name": "GOV-002_SimpliCreative_Second_Brain_Source_Register_v1.4.md",
+    "title": "GOV-002 SimpliCreative Second Brain Source Register",
+    "folder": "01_Governance",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/01_Governance/GOV-002_SimpliCreative_Second_Brain_Source_Register_v1.4.md",
+    "source_id": "GOV-002",
+    "version": "v1.4",
+    "extension": "md"
+  },
+  {
+    "id": "02_Company_Strategy__BRAND-001_Brand_Voice_and_Editorial_Standards_v1.0.md",
+    "file_name": "BRAND-001_Brand_Voice_and_Editorial_Standards_v1.0.md",
+    "title": "BRAND-001 Brand Voice and Editorial Standards",
+    "folder": "02_Company_Strategy",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/02_Company_Strategy/BRAND-001_Brand_Voice_and_Editorial_Standards_v1.0.md",
+    "source_id": "BRAND-001",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "02_Company_Strategy__Brand__BRAND-001_SimpliCreative_Brand_Guidelines_v1.0.pptx",
+    "file_name": "BRAND-001_SimpliCreative_Brand_Guidelines_v1.0.pptx",
+    "title": "BRAND-001 SimpliCreative Brand Guidelines",
+    "folder": "02_Company_Strategy/Brand",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/02_Company_Strategy/Brand/BRAND-001_SimpliCreative_Brand_Guidelines_v1.0.pptx",
+    "source_id": "BRAND-001",
+    "version": "v1.0",
+    "extension": "pptx"
+  },
+  {
+    "id": "02_Company_Strategy__Brand__BRAND-002_Client_Deliverable_Design_and_Brand_Application_Spec_v1.1.md",
+    "file_name": "BRAND-002_Client_Deliverable_Design_and_Brand_Application_Spec_v1.1.md",
+    "title": "BRAND-002 Client Deliverable Design and Brand Application Spec",
+    "folder": "02_Company_Strategy/Brand",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/02_Company_Strategy/Brand/BRAND-002_Client_Deliverable_Design_and_Brand_Application_Spec_v1.1.md",
+    "source_id": "BRAND-002",
+    "version": "v1.1",
+    "extension": "md"
+  },
+  {
+    "id": "02_Company_Strategy__STRAT-001_Strategic_Foundation_v1.0.md",
+    "file_name": "STRAT-001_Strategic_Foundation_v1.0.md",
+    "title": "STRAT-001 Strategic Foundation",
+    "folder": "02_Company_Strategy",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/02_Company_Strategy/STRAT-001_Strategic_Foundation_v1.0.md",
+    "source_id": "STRAT-001",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "03_Offers_and_Pricing__PRICE-001_Sales_Pricing_Commercial_Human_SOP_v1.2_FIXED.md",
+    "file_name": "PRICE-001_Sales_Pricing_Commercial_Human_SOP_v1.2_FIXED.md",
+    "title": "PRICE-001 Sales Pricing Commercial Human SOP v1.2 FIXED",
+    "folder": "03_Offers_and_Pricing",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/03_Offers_and_Pricing/PRICE-001_Sales_Pricing_Commercial_Human_SOP_v1.2_FIXED.md",
+    "source_id": "PRICE-001",
+    "version": "v1.2",
+    "extension": "md"
+  },
+  {
+    "id": "03_Offers_and_Pricing__PRICE-002_Sales_Pricing_Commercial_Intelligence_Workflow_Specification_v1.1.md",
+    "file_name": "PRICE-002_Sales_Pricing_Commercial_Intelligence_Workflow_Specification_v1.1.md",
+    "title": "PRICE-002 Sales Pricing Commercial Intelligence Workflow Specification",
+    "folder": "03_Offers_and_Pricing",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/03_Offers_and_Pricing/PRICE-002_Sales_Pricing_Commercial_Intelligence_Workflow_Specification_v1.1.md",
+    "source_id": "PRICE-002",
+    "version": "v1.1",
+    "extension": "md"
+  },
+  {
+    "id": "04_Sales_and_Diagnostic__DIAG-001_Executive_Marketing_Diagnostic_Human_SOP_v1.2.md",
+    "file_name": "DIAG-001_Executive_Marketing_Diagnostic_Human_SOP_v1.2.md",
+    "title": "DIAG-001 Executive Marketing Diagnostic Human SOP",
+    "folder": "04_Sales_and_Diagnostic",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/04_Sales_and_Diagnostic/DIAG-001_Executive_Marketing_Diagnostic_Human_SOP_v1.2.md",
+    "source_id": "DIAG-001",
+    "version": "v1.2",
+    "extension": "md"
+  },
+  {
+    "id": "04_Sales_and_Diagnostic__DIAG-002_Executive_Marketing_Diagnostic_Intelligence_Workflow_Spec_v1.4.md",
+    "file_name": "DIAG-002_Executive_Marketing_Diagnostic_Intelligence_Workflow_Spec_v1.4.md",
+    "title": "DIAG-002 Executive Marketing Diagnostic Intelligence Workflow Spec",
+    "folder": "04_Sales_and_Diagnostic",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/04_Sales_and_Diagnostic/DIAG-002_Executive_Marketing_Diagnostic_Intelligence_Workflow_Spec_v1.4.md",
+    "source_id": "DIAG-002",
+    "version": "v1.4",
+    "extension": "md"
+  },
+  {
+    "id": "05_Blueprint__BLUE-001_SimpliBlueprint_Human_SOP_v1.1.md",
+    "file_name": "BLUE-001_SimpliBlueprint_Human_SOP_v1.1.md",
+    "title": "BLUE-001 SimpliBlueprint Human SOP",
+    "folder": "05_Blueprint",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/05_Blueprint/BLUE-001_SimpliBlueprint_Human_SOP_v1.1.md",
+    "source_id": "BLUE-001",
+    "version": "v1.1",
+    "extension": "md"
+  },
+  {
+    "id": "05_Blueprint__BLUE-002_Blueprint_Intelligence_Workflow_Spec_v1.4.md",
+    "file_name": "BLUE-002_Blueprint_Intelligence_Workflow_Spec_v1.4.md",
+    "title": "BLUE-002 Blueprint Intelligence Workflow Spec",
+    "folder": "05_Blueprint",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/05_Blueprint/BLUE-002_Blueprint_Intelligence_Workflow_Spec_v1.4.md",
+    "source_id": "BLUE-002",
+    "version": "v1.4",
+    "extension": "md"
+  },
+  {
+    "id": "05_Blueprint__BLUE-003_Blueprint_Strategy_Deck_Spec_v1.0.md",
+    "file_name": "BLUE-003_Blueprint_Strategy_Deck_Spec_v1.0.md",
+    "title": "BLUE-003 Blueprint Strategy Deck Spec",
+    "folder": "05_Blueprint",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/05_Blueprint/BLUE-003_Blueprint_Strategy_Deck_Spec_v1.0.md",
+    "source_id": "BLUE-003",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "06_Implementation__FOUND-001_SimpliCreative_SimpliFoundation_Human_SOP_v1.2.md",
+    "file_name": "FOUND-001_SimpliCreative_SimpliFoundation_Human_SOP_v1.2.md",
+    "title": "FOUND-001 SimpliCreative SimpliFoundation Human SOP",
+    "folder": "06_Implementation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/06_Implementation/FOUND-001_SimpliCreative_SimpliFoundation_Human_SOP_v1.2.md",
+    "source_id": "FOUND-001",
+    "version": "v1.2",
+    "extension": "md"
+  },
+  {
+    "id": "06_Implementation__FOUND-002_SimpliFoundation_Engineering_Spec_v1.2.md",
+    "file_name": "FOUND-002_SimpliFoundation_Engineering_Spec_v1.2.md",
+    "title": "FOUND-002 SimpliFoundation Engineering Spec",
+    "folder": "06_Implementation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/06_Implementation/FOUND-002_SimpliFoundation_Engineering_Spec_v1.2.md",
+    "source_id": "FOUND-002",
+    "version": "v1.2",
+    "extension": "md"
+  },
+  {
+    "id": "06_Implementation__TPL-001_Templated_WordPress_Human_SOP_v1.0.md",
+    "file_name": "TPL-001_Templated_WordPress_Human_SOP_v1.0.md",
+    "title": "TPL-001 Templated WordPress Human SOP",
+    "folder": "06_Implementation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/06_Implementation/TPL-001_Templated_WordPress_Human_SOP_v1.0.md",
+    "source_id": "TPL-001",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "06_Implementation__TPL-002_Tempalted_WordPress_AI_Spec_v1.0.md",
+    "file_name": "TPL-002_Tempalted_WordPress_AI_Spec_v1.0.md",
+    "title": "TPL-002 Tempalted WordPress AI Spec",
+    "folder": "06_Implementation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/06_Implementation/TPL-002_Tempalted_WordPress_AI_Spec_v1.0.md",
+    "source_id": "TPL-002",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "07_CARE__CARE-001_SimpliCARE_Human_SOP_v1.1.md",
+    "file_name": "CARE-001_SimpliCARE_Human_SOP_v1.1.md",
+    "title": "CARE-001 SimpliCARE Human SOP",
+    "folder": "07_CARE",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/07_CARE/CARE-001_SimpliCARE_Human_SOP_v1.1.md",
+    "source_id": "CARE-001",
+    "version": "v1.1",
+    "extension": "md"
+  },
+  {
+    "id": "07_CARE__CARE-002_CARE_Intelligence_and_Reporting_Engineering_Spec_v1.1.md",
+    "file_name": "CARE-002_CARE_Intelligence_and_Reporting_Engineering_Spec_v1.1.md",
+    "title": "CARE-002 CARE Intelligence and Reporting Engineering Spec",
+    "folder": "07_CARE",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/07_CARE/CARE-002_CARE_Intelligence_and_Reporting_Engineering_Spec_v1.1.md",
+    "source_id": "CARE-002",
+    "version": "v1.1",
+    "extension": "md"
+  },
+  {
+    "id": "08_Acquisition__ACQ-001_Inbound_Client_Acquisition_Strategy_v1.0.md",
+    "file_name": "ACQ-001_Inbound_Client_Acquisition_Strategy_v1.0.md",
+    "title": "ACQ-001 Inbound Client Acquisition Strategy",
+    "folder": "08_Acquisition",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/08_Acquisition/ACQ-001_Inbound_Client_Acquisition_Strategy_v1.0.md",
+    "source_id": "ACQ-001",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "08_Acquisition__ACQ-002_Inbound_Acquisition_Intelligence_Workflow_Spec_v1.1.md",
+    "file_name": "ACQ-002_Inbound_Acquisition_Intelligence_Workflow_Spec_v1.1.md",
+    "title": "ACQ-002 Inbound Acquisition Intelligence Workflow Spec",
+    "folder": "08_Acquisition",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/08_Acquisition/ACQ-002_Inbound_Acquisition_Intelligence_Workflow_Spec_v1.1.md",
+    "source_id": "ACQ-002",
+    "version": "v1.1",
+    "extension": "md"
+  },
+  {
+    "id": "09_Supporting_Methodologies__AEO-001_AEO_Methodology_and_Frameworks.md",
+    "file_name": "AEO-001_AEO_Methodology_and_Frameworks.md",
+    "title": "AEO-001 AEO Methodology and Frameworks",
+    "folder": "09_Supporting_Methodologies",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/09_Supporting_Methodologies/AEO-001_AEO_Methodology_and_Frameworks.md",
+    "source_id": "AEO-001",
+    "version": null,
+    "extension": "md"
+  },
+  {
+    "id": "09_Supporting_Methodologies__B2B-001_B2B_Marketing_Principles_and_Frameworks.md",
+    "file_name": "B2B-001_B2B_Marketing_Principles_and_Frameworks.md",
+    "title": "B2B-001 B2B Marketing Principles and Frameworks",
+    "folder": "09_Supporting_Methodologies",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/09_Supporting_Methodologies/B2B-001_B2B_Marketing_Principles_and_Frameworks.md",
+    "source_id": "B2B-001",
+    "version": null,
+    "extension": "md"
+  },
+  {
+    "id": "09_Supporting_Methodologies__COPY-001_Copywriting_Principles_and_Frameworks.md",
+    "file_name": "COPY-001_Copywriting_Principles_and_Frameworks.md",
+    "title": "COPY-001 Copywriting Principles and Frameworks",
+    "folder": "09_Supporting_Methodologies",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/09_Supporting_Methodologies/COPY-001_Copywriting_Principles_and_Frameworks.md",
+    "source_id": "COPY-001",
+    "version": null,
+    "extension": "md"
+  },
+  {
+    "id": "09_Supporting_Methodologies__README_09_Supporting_Methodologies.md",
+    "file_name": "README_09_Supporting_Methodologies.md",
+    "title": "README 09 Supporting Methodologies",
+    "folder": "09_Supporting_Methodologies",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/09_Supporting_Methodologies/README_09_Supporting_Methodologies.md",
+    "source_id": "README",
+    "version": null,
+    "extension": "md"
+  },
+  {
+    "id": "09_Supporting_Methodologies__TEMPLATE_Supporting_Methodology_Intake.md",
+    "file_name": "TEMPLATE_Supporting_Methodology_Intake.md",
+    "title": "TEMPLATE Supporting Methodology Intake",
+    "folder": "09_Supporting_Methodologies",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/09_Supporting_Methodologies/TEMPLATE_Supporting_Methodology_Intake.md",
+    "source_id": "TEMPLATE",
+    "version": null,
+    "extension": "md"
+  },
+  {
+    "id": "11_Gold_Standard__Blueprint__GS-BLUE-001_SimpliBlueprint_Report_NuVue_v1.0.docx",
+    "file_name": "GS-BLUE-001_SimpliBlueprint_Report_NuVue_v1.0.docx",
+    "title": "GS-BLUE-001 SimpliBlueprint Report NuVue",
+    "folder": "11_Gold_Standard/Blueprint",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Blueprint/GS-BLUE-001_SimpliBlueprint_Report_NuVue_v1.0.docx",
+    "source_id": "GS-BLUE-001",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Blueprint__GS-BLUE-002_SimpliCreative_Blueprint_Strategy_Deck_NuVue_Demo_v1.0.pptx",
+    "file_name": "GS-BLUE-002_SimpliCreative_Blueprint_Strategy_Deck_NuVue_Demo_v1.0.pptx",
+    "title": "GS-BLUE-002 SimpliCreative Blueprint Strategy Deck NuVue Demo",
+    "folder": "11_Gold_Standard/Blueprint",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Blueprint/GS-BLUE-002_SimpliCreative_Blueprint_Strategy_Deck_NuVue_Demo_v1.0.pptx",
+    "source_id": "GS-BLUE-002",
+    "version": "v1.0",
+    "extension": "pptx"
+  },
+  {
+    "id": "11_Gold_Standard__Blueprint__GS-BLUE-003_SimpliCreative_Personalized_Blueprint_Questionnaire_NuVue_Demo_v1.0_EDITABLE.docx",
+    "file_name": "GS-BLUE-003_SimpliCreative_Personalized_Blueprint_Questionnaire_NuVue_Demo_v1.0_EDITABLE.docx",
+    "title": "GS-BLUE-003 SimpliCreative Personalized Blueprint Questionnaire NuVue Demo v1.0 EDITABLE",
+    "folder": "11_Gold_Standard/Blueprint",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Blueprint/GS-BLUE-003_SimpliCreative_Personalized_Blueprint_Questionnaire_NuVue_Demo_v1.0_EDITABLE.docx",
+    "source_id": "GS-BLUE-003",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Blueprint__Inputs__DEMO-BLUE-QCTX-001_SimpliCreative_Blueprint_Questionnaire_Input_Context_NuVue_v1.0.md",
+    "file_name": "DEMO-BLUE-QCTX-001_SimpliCreative_Blueprint_Questionnaire_Input_Context_NuVue_v1.0.md",
+    "title": "DEMO-BLUE-QCTX-001 SimpliCreative Blueprint Questionnaire Input Context NuVue",
+    "folder": "11_Gold_Standard/Blueprint/Inputs",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Blueprint/Inputs/DEMO-BLUE-QCTX-001_SimpliCreative_Blueprint_Questionnaire_Input_Context_NuVue_v1.0.md",
+    "source_id": "DEMO-BLUE-QCTX-001",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "11_Gold_Standard__Blueprint__Inputs__GS-BLUE-0034_Blueprint_Research_Evidence_Synthesis_NuVue_Demo_v1.0.md",
+    "file_name": "GS-BLUE-0034_Blueprint_Research_Evidence_Synthesis_NuVue_Demo_v1.0.md",
+    "title": "GS-BLUE-0034 Blueprint Research Evidence Synthesis NuVue Demo",
+    "folder": "11_Gold_Standard/Blueprint/Inputs",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Blueprint/Inputs/GS-BLUE-0034_Blueprint_Research_Evidence_Synthesis_NuVue_Demo_v1.0.md",
+    "source_id": "GS-BLUE-0034",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "11_Gold_Standard__Blueprint__Inputs__GS-BLUE-005_Strategy_Session_Record_Final_Reconciliation_NuVue_Demo_v1.0.md",
+    "file_name": "GS-BLUE-005_Strategy_Session_Record_Final_Reconciliation_NuVue_Demo_v1.0.md",
+    "title": "GS-BLUE-005 Strategy Session Record Final Reconciliation NuVue Demo",
+    "folder": "11_Gold_Standard/Blueprint/Inputs",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Blueprint/Inputs/GS-BLUE-005_Strategy_Session_Record_Final_Reconciliation_NuVue_Demo_v1.0.md",
+    "source_id": "GS-BLUE-005",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "11_Gold_Standard__Blueprint__Inputs__GS-BLUE-006_Strategy-to-Execution_Implementation_Handoff_NuVue_Demo_v1.0.md",
+    "file_name": "GS-BLUE-006_Strategy-to-Execution_Implementation_Handoff_NuVue_Demo_v1.0.md",
+    "title": "GS-BLUE-006 Strategy-to-Execution Implementation Handoff NuVue Demo",
+    "folder": "11_Gold_Standard/Blueprint/Inputs",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Blueprint/Inputs/GS-BLUE-006_Strategy-to-Execution_Implementation_Handoff_NuVue_Demo_v1.0.md",
+    "source_id": "GS-BLUE-006",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "11_Gold_Standard__CARE__GS-CARE-001_Standardized_Client-Facing_Marketing_Performance_Intelligence_Report_v1.0.pptx",
+    "file_name": "GS-CARE-001_Standardized_Client-Facing_Marketing_Performance_Intelligence_Report_v1.0.pptx",
+    "title": "GS-CARE-001 Standardized Client-Facing Marketing Performance Intelligence Report",
+    "folder": "11_Gold_Standard/CARE",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/CARE/GS-CARE-001_Standardized_Client-Facing_Marketing_Performance_Intelligence_Report_v1.0.pptx",
+    "source_id": "GS-CARE-001",
+    "version": "v1.0",
+    "extension": "pptx"
+  },
+  {
+    "id": "11_Gold_Standard__CARE__GS-CARE-002_Executive_Impact_Deck_Extracted_Board_Summary_v1.0.pptx",
+    "file_name": "GS-CARE-002_Executive_Impact_Deck_Extracted_Board_Summary_v1.0.pptx",
+    "title": "GS-CARE-002 Executive Impact Deck Extracted Board Summary",
+    "folder": "11_Gold_Standard/CARE",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/CARE/GS-CARE-002_Executive_Impact_Deck_Extracted_Board_Summary_v1.0.pptx",
+    "source_id": "GS-CARE-002",
+    "version": "v1.0",
+    "extension": "pptx"
+  },
+  {
+    "id": "11_Gold_Standard__CARE__GS-CARE-003_Discoverability_Content_Opportunity_Report_v1.0.pptx",
+    "file_name": "GS-CARE-003_Discoverability_Content_Opportunity_Report_v1.0.pptx",
+    "title": "GS-CARE-003 Discoverability Content Opportunity Report",
+    "folder": "11_Gold_Standard/CARE",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/CARE/GS-CARE-003_Discoverability_Content_Opportunity_Report_v1.0.pptx",
+    "source_id": "GS-CARE-003",
+    "version": "v1.0",
+    "extension": "pptx"
+  },
+  {
+    "id": "11_Gold_Standard__CARE__inputs__DEMO-CARE-004_Outcome_Record_and_Learning_Fixture_v1.0.md",
+    "file_name": "DEMO-CARE-004_Outcome_Record_and_Learning_Fixture_v1.0.md",
+    "title": "DEMO-CARE-004 Outcome Record and Learning Fixture",
+    "folder": "11_Gold_Standard/CARE/inputs",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/CARE/inputs/DEMO-CARE-004_Outcome_Record_and_Learning_Fixture_v1.0.md",
+    "source_id": "DEMO-CARE-004",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "11_Gold_Standard__CARE__inputs__DEMO-CARE-ACT-001_CARE_Activation_Record_v1.0.md",
+    "file_name": "DEMO-CARE-ACT-001_CARE_Activation_Record_v1.0.md",
+    "title": "DEMO-CARE-ACT-001 CARE Activation Record",
+    "folder": "11_Gold_Standard/CARE/inputs",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/CARE/inputs/DEMO-CARE-ACT-001_CARE_Activation_Record_v1.0.md",
+    "source_id": "DEMO-CARE-ACT-001",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "11_Gold_Standard__CARE__inputs__DEMO-CARE-EXIT-001_CARE_Transition_and_Exit_Record_v1.0.md",
+    "file_name": "DEMO-CARE-EXIT-001_CARE_Transition_and_Exit_Record_v1.0.md",
+    "title": "DEMO-CARE-EXIT-001 CARE Transition and Exit Record",
+    "folder": "11_Gold_Standard/CARE/inputs",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/CARE/inputs/DEMO-CARE-EXIT-001_CARE_Transition_and_Exit_Record_v1.0.md",
+    "source_id": "DEMO-CARE-EXIT-001",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "11_Gold_Standard__Diagnostic__GS-DIAG-003_SimpliCreative_Executive_Diagnostic_Follow_Up_Northstar_Demo_v1.0.docx",
+    "file_name": "GS-DIAG-003_SimpliCreative_Executive_Diagnostic_Follow_Up_Northstar_Demo_v1.0.docx",
+    "title": "GS-DIAG-003 SimpliCreative Executive Diagnostic Follow Up Northstar Demo",
+    "folder": "11_Gold_Standard/Diagnostic",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Diagnostic/GS-DIAG-003_SimpliCreative_Executive_Diagnostic_Follow_Up_Northstar_Demo_v1.0.docx",
+    "source_id": "GS-DIAG-003",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Diagnostic__Inputs__DEMO-DIAG-001_SimpliCreative_Executive_Diagnostic_Demo_Inputs_v1.0.md",
+    "file_name": "DEMO-DIAG-001_SimpliCreative_Executive_Diagnostic_Demo_Inputs_v1.0.md",
+    "title": "DEMO-DIAG-001 SimpliCreative Executive Diagnostic Demo Inputs",
+    "folder": "11_Gold_Standard/Diagnostic/Inputs",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Diagnostic/Inputs/DEMO-DIAG-001_SimpliCreative_Executive_Diagnostic_Demo_Inputs_v1.0.md",
+    "source_id": "DEMO-DIAG-001",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "11_Gold_Standard__Foundation__GS-FOUND-001_SimpliCreative_Strategy_to_Execution_Handoff_NuVue_Demo_v1.0.docx",
+    "file_name": "GS-FOUND-001_SimpliCreative_Strategy_to_Execution_Handoff_NuVue_Demo_v1.0.docx",
+    "title": "GS-FOUND-001 SimpliCreative Strategy to Execution Handoff NuVue Demo",
+    "folder": "11_Gold_Standard/Foundation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Foundation/GS-FOUND-001_SimpliCreative_Strategy_to_Execution_Handoff_NuVue_Demo_v1.0.docx",
+    "source_id": "GS-FOUND-001",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Foundation__GS-FOUND-002_SimpliCreative_Website_Messaging_and_Content_Blueprint_NuVue_Demo_v1.1.docx",
+    "file_name": "GS-FOUND-002_SimpliCreative_Website_Messaging_and_Content_Blueprint_NuVue_Demo_v1.1.docx",
+    "title": "GS-FOUND-002 SimpliCreative Website Messaging and Content Blueprint NuVue Demo",
+    "folder": "11_Gold_Standard/Foundation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Foundation/GS-FOUND-002_SimpliCreative_Website_Messaging_and_Content_Blueprint_NuVue_Demo_v1.1.docx",
+    "source_id": "GS-FOUND-002",
+    "version": "v1.1",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Foundation__GS-FOUND-003_SimpliCreative_Brand_Voice_and_Editorial_Guide_NuVue_Demo_v1.0.docx",
+    "file_name": "GS-FOUND-003_SimpliCreative_Brand_Voice_and_Editorial_Guide_NuVue_Demo_v1.0.docx",
+    "title": "GS-FOUND-003 SimpliCreative Brand Voice and Editorial Guide NuVue Demo",
+    "folder": "11_Gold_Standard/Foundation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Foundation/GS-FOUND-003_SimpliCreative_Brand_Voice_and_Editorial_Guide_NuVue_Demo_v1.0.docx",
+    "source_id": "GS-FOUND-003",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Foundation__GS-FOUND-004_SimpliCreative_Homepage_Content_and_Messaging_Brief_NuVue_Demo_v1.0.docx",
+    "file_name": "GS-FOUND-004_SimpliCreative_Homepage_Content_and_Messaging_Brief_NuVue_Demo_v1.0.docx",
+    "title": "GS-FOUND-004 SimpliCreative Homepage Content and Messaging Brief NuVue Demo",
+    "folder": "11_Gold_Standard/Foundation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Foundation/GS-FOUND-004_SimpliCreative_Homepage_Content_and_Messaging_Brief_NuVue_Demo_v1.0.docx",
+    "source_id": "GS-FOUND-004",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Foundation__GS-FOUND-005_SimpliCreative_Homepage_Copy_Draft_NuVue_Demo_v1.0.docx",
+    "file_name": "GS-FOUND-005_SimpliCreative_Homepage_Copy_Draft_NuVue_Demo_v1.0.docx",
+    "title": "GS-FOUND-005 SimpliCreative Homepage Copy Draft NuVue Demo",
+    "folder": "11_Gold_Standard/Foundation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Foundation/GS-FOUND-005_SimpliCreative_Homepage_Copy_Draft_NuVue_Demo_v1.0.docx",
+    "source_id": "GS-FOUND-005",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Foundation__GS-FOUND-006_SimpliCreative_Creative_Brief_NuVue_Homepage_Demo_v1.0.docx",
+    "file_name": "GS-FOUND-006_SimpliCreative_Creative_Brief_NuVue_Homepage_Demo_v1.0.docx",
+    "title": "GS-FOUND-006 SimpliCreative Creative Brief NuVue Homepage Demo",
+    "folder": "11_Gold_Standard/Foundation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Foundation/GS-FOUND-006_SimpliCreative_Creative_Brief_NuVue_Homepage_Demo_v1.0.docx",
+    "source_id": "GS-FOUND-006",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Foundation__GS-FOUND-007_SimpliCreative_Development_Handoff_and_Implementation_Spec_NuVue_Homepage_Demo_v1.0.docx",
+    "file_name": "GS-FOUND-007_SimpliCreative_Development_Handoff_and_Implementation_Spec_NuVue_Homepage_Demo_v1.0.docx",
+    "title": "GS-FOUND-007 SimpliCreative Development Handoff and Implementation Spec NuVue Homepage Demo",
+    "folder": "11_Gold_Standard/Foundation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Foundation/GS-FOUND-007_SimpliCreative_Development_Handoff_and_Implementation_Spec_NuVue_Homepage_Demo_v1.0.docx",
+    "source_id": "GS-FOUND-007",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Foundation__GS-FOUND-008_SimpliCreative_Integrated_Site_Architecture_NuVue_Demo_v1.0.xlsx",
+    "file_name": "GS-FOUND-008_SimpliCreative_Integrated_Site_Architecture_NuVue_Demo_v1.0.xlsx",
+    "title": "GS-FOUND-008 SimpliCreative Integrated Site Architecture NuVue Demo",
+    "folder": "11_Gold_Standard/Foundation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Foundation/GS-FOUND-008_SimpliCreative_Integrated_Site_Architecture_NuVue_Demo_v1.0.xlsx",
+    "source_id": "GS-FOUND-008",
+    "version": "v1.0",
+    "extension": "xlsx"
+  },
+  {
+    "id": "11_Gold_Standard__Foundation__GS-FOUND-009_SimpliCreative_Strategic_Fidelity_QA_and_Launch_Readiness_NuVue_Demo_v1.0.xlsx",
+    "file_name": "GS-FOUND-009_SimpliCreative_Strategic_Fidelity_QA_and_Launch_Readiness_NuVue_Demo_v1.0.xlsx",
+    "title": "GS-FOUND-009 SimpliCreative Strategic Fidelity QA and Launch Readiness NuVue Demo",
+    "folder": "11_Gold_Standard/Foundation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Foundation/GS-FOUND-009_SimpliCreative_Strategic_Fidelity_QA_and_Launch_Readiness_NuVue_Demo_v1.0.xlsx",
+    "source_id": "GS-FOUND-009",
+    "version": "v1.0",
+    "extension": "xlsx"
+  },
+  {
+    "id": "11_Gold_Standard__Foundation__GS-FOUND-010_SimpliCreative_Launch_Record_and_Post_Launch_Validation_NuVue_Demo_v1.0.xlsx",
+    "file_name": "GS-FOUND-010_SimpliCreative_Launch_Record_and_Post_Launch_Validation_NuVue_Demo_v1.0.xlsx",
+    "title": "GS-FOUND-010 SimpliCreative Launch Record and Post Launch Validation NuVue Demo",
+    "folder": "11_Gold_Standard/Foundation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Foundation/GS-FOUND-010_SimpliCreative_Launch_Record_and_Post_Launch_Validation_NuVue_Demo_v1.0.xlsx",
+    "source_id": "GS-FOUND-010",
+    "version": "v1.0",
+    "extension": "xlsx"
+  },
+  {
+    "id": "11_Gold_Standard__Foundation__GS-FOUND-011_SimpliCreative_Implementation_and_Ongoing_Ownership_Handoff_NuVue_Demo_v1.0.docx",
+    "file_name": "GS-FOUND-011_SimpliCreative_Implementation_and_Ongoing_Ownership_Handoff_NuVue_Demo_v1.0.docx",
+    "title": "GS-FOUND-011 SimpliCreative Implementation and Ongoing Ownership Handoff NuVue Demo",
+    "folder": "11_Gold_Standard/Foundation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Foundation/GS-FOUND-011_SimpliCreative_Implementation_and_Ongoing_Ownership_Handoff_NuVue_Demo_v1.0.docx",
+    "source_id": "GS-FOUND-011",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Foundation__GS-TPL-001_Templated_WordPress_Client_Discovery_Questionnaire_Demo_v1.1.docx",
+    "file_name": "GS-TPL-001_Templated_WordPress_Client_Discovery_Questionnaire_Demo_v1.1.docx",
+    "title": "GS-TPL-001 Templated WordPress Client Discovery Questionnaire Demo",
+    "folder": "11_Gold_Standard/Foundation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Foundation/GS-TPL-001_Templated_WordPress_Client_Discovery_Questionnaire_Demo_v1.1.docx",
+    "source_id": "GS-TPL-001",
+    "version": "v1.1",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Foundation__GS-TPL-002_Templated_WordPress_Content_and_Page_Outline_Ibar_Demo_v1.0.docx",
+    "file_name": "GS-TPL-002_Templated_WordPress_Content_and_Page_Outline_Ibar_Demo_v1.0.docx",
+    "title": "GS-TPL-002 Templated WordPress Content and Page Outline Ibar Demo",
+    "folder": "11_Gold_Standard/Foundation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Foundation/GS-TPL-002_Templated_WordPress_Content_and_Page_Outline_Ibar_Demo_v1.0.docx",
+    "source_id": "GS-TPL-002",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Foundation__GS-TPL-003_Theme_Mapped_Copy_and_Layout_Recommendation_Ibar_Demo_v1.0.docx",
+    "file_name": "GS-TPL-003_Theme_Mapped_Copy_and_Layout_Recommendation_Ibar_Demo_v1.0.docx",
+    "title": "GS-TPL-003 Theme Mapped Copy and Layout Recommendation Ibar Demo",
+    "folder": "11_Gold_Standard/Foundation",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Foundation/GS-TPL-003_Theme_Mapped_Copy_and_Layout_Recommendation_Ibar_Demo_v1.0.docx",
+    "source_id": "GS-TPL-003",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Sales__GS-SALES-001_SimpliCreative_Personalized_SimpliBlueprint_Proposal_Northstar_Demo_v1.0.docx",
+    "file_name": "GS-SALES-001_SimpliCreative_Personalized_SimpliBlueprint_Proposal_Northstar_Demo_v1.0.docx",
+    "title": "GS-SALES-001 SimpliCreative Personalized SimpliBlueprint Proposal Northstar Demo",
+    "folder": "11_Gold_Standard/Sales",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Sales/GS-SALES-001_SimpliCreative_Personalized_SimpliBlueprint_Proposal_Northstar_Demo_v1.0.docx",
+    "source_id": "GS-SALES-001",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Sales__GS-SALES-002_SimpliCreative_Personalized_SimpliFoundation_Proposal_Northstar_Demo_v1.0.docx",
+    "file_name": "GS-SALES-002_SimpliCreative_Personalized_SimpliFoundation_Proposal_Northstar_Demo_v1.0.docx",
+    "title": "GS-SALES-002 SimpliCreative Personalized SimpliFoundation Proposal Northstar Demo",
+    "folder": "11_Gold_Standard/Sales",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Sales/GS-SALES-002_SimpliCreative_Personalized_SimpliFoundation_Proposal_Northstar_Demo_v1.0.docx",
+    "source_id": "GS-SALES-002",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Sales__GS-SALES-003_SimpliCreative_Foundation_Scoping_Record_Northstar_Demo_v1.0.xlsx",
+    "file_name": "GS-SALES-003_SimpliCreative_Foundation_Scoping_Record_Northstar_Demo_v1.0.xlsx",
+    "title": "GS-SALES-003 SimpliCreative Foundation Scoping Record Northstar Demo",
+    "folder": "11_Gold_Standard/Sales",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Sales/GS-SALES-003_SimpliCreative_Foundation_Scoping_Record_Northstar_Demo_v1.0.xlsx",
+    "source_id": "GS-SALES-003",
+    "version": "v1.0",
+    "extension": "xlsx"
+  },
+  {
+    "id": "11_Gold_Standard__Sales__GS-SALES-004_SimpliCreative_Proposal_Send_and_Next_Step_Email_Northstar_Demo_v1.0.docx",
+    "file_name": "GS-SALES-004_SimpliCreative_Proposal_Send_and_Next_Step_Email_Northstar_Demo_v1.0.docx",
+    "title": "GS-SALES-004 SimpliCreative Proposal Send and Next Step Email Northstar Demo",
+    "folder": "11_Gold_Standard/Sales",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Sales/GS-SALES-004_SimpliCreative_Proposal_Send_and_Next_Step_Email_Northstar_Demo_v1.0.docx",
+    "source_id": "GS-SALES-004",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Sales__GS-SALES-005_Templated_WordPress_Proposal_Ibar_Demo_v1.0.docx",
+    "file_name": "GS-SALES-005_Templated_WordPress_Proposal_Ibar_Demo_v1.0.docx",
+    "title": "GS-SALES-005 Templated WordPress Proposal Ibar Demo",
+    "folder": "11_Gold_Standard/Sales",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Sales/GS-SALES-005_Templated_WordPress_Proposal_Ibar_Demo_v1.0.docx",
+    "source_id": "GS-SALES-005",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "11_Gold_Standard__Sales__GS-SALES-006_Personalized_SimpliCARE_Proposal_HereApp_Demo_v1.0.docx",
+    "file_name": "GS-SALES-006_Personalized_SimpliCARE_Proposal_HereApp_Demo_v1.0.docx",
+    "title": "GS-SALES-006 Personalized SimpliCARE Proposal HereApp Demo",
+    "folder": "11_Gold_Standard/Sales",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/11_Gold_Standard/Sales/GS-SALES-006_Personalized_SimpliCARE_Proposal_HereApp_Demo_v1.0.docx",
+    "source_id": "GS-SALES-006",
+    "version": "v1.0",
+    "extension": "docx"
+  },
+  {
+    "id": "12_Reference__08 - Andy Crestodina - How to get AI to recommend your brand.pdf",
+    "file_name": "08 - Andy Crestodina - How to get AI to recommend your brand.pdf",
+    "title": "08 - Andy Crestodina - How to get AI to recommend your brand",
+    "folder": "12_Reference",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/12_Reference/08 - Andy Crestodina - How to get AI to recommend your brand.pdf",
+    "source_id": null,
+    "version": null,
+    "extension": "pdf"
+  },
+  {
+    "id": "12_Reference__PARTNER-001_Partner_Distribution_Strategy_v1.0.md",
+    "file_name": "PARTNER-001_Partner_Distribution_Strategy_v1.0.md",
+    "title": "PARTNER-001 Partner Distribution Strategy",
+    "folder": "12_Reference",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/12_Reference/PARTNER-001_Partner_Distribution_Strategy_v1.0.md",
+    "source_id": "PARTNER-001",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "12_Reference__REF-B2B-001_Escaping_Average_B2B.md",
+    "file_name": "REF-B2B-001_Escaping_Average_B2B.md",
+    "title": "REF-B2B-001 Escaping Average B2B",
+    "folder": "12_Reference",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/12_Reference/REF-B2B-001_Escaping_Average_B2B.md",
+    "source_id": "REF-B2B-001",
+    "version": null,
+    "extension": "md"
+  },
+  {
+    "id": "12_Reference__REF-COMP-001_SimpliCreative B2B Competitor Research.md",
+    "file_name": "REF-COMP-001_SimpliCreative B2B Competitor Research.md",
+    "title": "REF-COMP-001 SimpliCreative B2B Competitor Research",
+    "folder": "12_Reference",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/12_Reference/REF-COMP-001_SimpliCreative B2B Competitor Research.md",
+    "source_id": "REF-COMP-001",
+    "version": null,
+    "extension": "md"
+  },
+  {
+    "id": "12_Reference__REF-COPY-001_Ann_Handley_Notes.md",
+    "file_name": "REF-COPY-001_Ann_Handley_Notes.md",
+    "title": "REF-COPY-001 Ann Handley Notes",
+    "folder": "12_Reference",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/12_Reference/REF-COPY-001_Ann_Handley_Notes.md",
+    "source_id": "REF-COPY-001",
+    "version": null,
+    "extension": "md"
+  },
+  {
+    "id": "15_Evaluations__EVAL-001_Engineering_Acceptance_Test_Pack_v1.0.md",
+    "file_name": "EVAL-001_Engineering_Acceptance_Test_Pack_v1.0.md",
+    "title": "EVAL-001 Engineering Acceptance Test Pack",
+    "folder": "15_Evaluations",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/15_Evaluations/EVAL-001_Engineering_Acceptance_Test_Pack_v1.0.md",
+    "source_id": "EVAL-001",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "16_Team_Enablement__TEAM-01_Second_Brain_Team_Guide_v1.0.md",
+    "file_name": "TEAM-01_Second_Brain_Team_Guide_v1.0.md",
+    "title": "TEAM-01 Second Brain Team Guide",
+    "folder": "16_Team_Enablement",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/16_Team_Enablement/TEAM-01_Second_Brain_Team_Guide_v1.0.md",
+    "source_id": "TEAM-01",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "ENG-001_Engineering_Build_Brief_and _Systems_Inventory_v1.0.md",
+    "file_name": "ENG-001_Engineering_Build_Brief_and _Systems_Inventory_v1.0.md",
+    "title": "ENG-001 Engineering Build Brief and  Systems Inventory",
+    "folder": "Root",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/ENG-001_Engineering_Build_Brief_and _Systems_Inventory_v1.0.md",
+    "source_id": "ENG-001",
+    "version": "v1.0",
+    "extension": "md"
+  },
+  {
+    "id": "GS-BLUE-003_SimpliCreative_Personalized_Blueprint_Questionnaire_NuVue_Demo_v1.0.pdf",
+    "file_name": "GS-BLUE-003_SimpliCreative_Personalized_Blueprint_Questionnaire_NuVue_Demo_v1.0.pdf",
+    "title": "GS-BLUE-003 SimpliCreative Personalized Blueprint Questionnaire NuVue Demo",
+    "folder": "Root",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/GS-BLUE-003_SimpliCreative_Personalized_Blueprint_Questionnaire_NuVue_Demo_v1.0.pdf",
+    "source_id": "GS-BLUE-003",
+    "version": "v1.0",
+    "extension": "pdf"
+  },
+  {
+    "id": "GS-BLUE-004_SimpliCreative_Blueprint_Research_and_Evidence_Synthesis_NuVue_Demo_v1.0.pdf",
+    "file_name": "GS-BLUE-004_SimpliCreative_Blueprint_Research_and_Evidence_Synthesis_NuVue_Demo_v1.0.pdf",
+    "title": "GS-BLUE-004 SimpliCreative Blueprint Research and Evidence Synthesis NuVue Demo",
+    "folder": "Root",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/GS-BLUE-004_SimpliCreative_Blueprint_Research_and_Evidence_Synthesis_NuVue_Demo_v1.0.pdf",
+    "source_id": "GS-BLUE-004",
+    "version": "v1.0",
+    "extension": "pdf"
+  },
+  {
+    "id": "GS-DIAG-001_SimpliCreative_Executive_Diagnostic_Brief_Demo_v1.0.pdf",
+    "file_name": "GS-DIAG-001_SimpliCreative_Executive_Diagnostic_Brief_Demo_v1.0.pdf",
+    "title": "GS-DIAG-001 SimpliCreative Executive Diagnostic Brief Demo",
+    "folder": "Root",
+    "source_location": "SimpliCreative_Second_Brain_Master_Files/GS-DIAG-001_SimpliCreative_Executive_Diagnostic_Brief_Demo_v1.0.pdf",
+    "source_id": "GS-DIAG-001",
+    "version": "v1.0",
+    "extension": "pdf"
+  }
+]

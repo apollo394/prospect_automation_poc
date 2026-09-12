@@ -202,6 +202,13 @@ def frameworks():
     return list_frameworks()
 
 
+@router.get("/knowledge/sources")
+def knowledge_sources():
+    from app.core import data_loader
+
+    return data_loader.knowledge_sources()
+
+
 @router.get("/services")
 def services():
     return list_services()

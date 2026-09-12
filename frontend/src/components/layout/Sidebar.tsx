@@ -3,8 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  ClipboardList,
-  FolderKanban,
   HelpCircle,
   LayoutList,
   Settings,
@@ -14,8 +12,6 @@ import { cn } from "@/lib/utils";
 
 const nav = [
   { href: "/", label: "Prospects", icon: Users },
-  { href: "/assessments", label: "Strategy Assessments", icon: FolderKanban },
-  { href: "/questionnaires", label: "Questionnaires", icon: ClipboardList },
   { href: "/work-queue", label: "Work Queue", icon: LayoutList },
   { href: "/frameworks", label: "Knowledge / Frameworks", icon: HelpCircle },
   { href: "/settings", label: "Settings", icon: Settings },

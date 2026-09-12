@@ -239,7 +239,7 @@ export const api = {
   health: () => request<{ status: string }>("/api/health"),
   journeys: () => request<GovernedJourney[]>("/api/journeys"),
   journey: (id: string) => request<GovernedJourney>(`/api/journeys/${id}`),
-  journeyAction: (
+  journeyAction: async (
     id: string,
     body: {
       action: JourneyAction;
@@ -248,11 +248,14 @@ export const api = {
       reason?: string;
       edits?: Record<string, unknown>;
     }
-  ) =>
-    request<GovernedJourney>(`/api/journeys/${id}/actions`, {
+  ) => {
+    const journey = await request<GovernedJourney>(`/api/journeys/${id}/actions`, {
       method: "POST",
       body: JSON.stringify(body),
-    }),
+    });
+    if (typeof window !== "undefined") window.dispatchEvent(new Event("sc-journey-updated"));
+    return journey;
+  },
   prospects: () => request<Prospect[]>("/api/prospects"),
   prospect: (id: string) =>
     request<{ prospect: Prospect; transcript: unknown }>(`/api/prospects/${id}`),
@@ -319,5 +322,18 @@ export const api = {
       body: JSON.stringify(body),
     }),
   frameworks: () => request<unknown[]>("/api/frameworks"),
+  knowledgeSources: () =>
+    request<
+      Array<{
+        id: string;
+        file_name: string;
+        title: string;
+        folder: string;
+        source_location: string;
+        source_id: string | null;
+        version: string | null;
+        extension: string;
+      }>
+    >("/api/knowledge/sources"),
   services: () => request<unknown[]>("/api/services"),
 };

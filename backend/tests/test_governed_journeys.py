@@ -61,8 +61,25 @@ class GovernedJourneysTests(unittest.TestCase):
     def test_every_synthetic_lead_has_a_complete_client_safe_proposal_draft(self):
         for journey_id in ("cedar-strategy", "atlas-health", "harbor-advisory", "northstar-services"):
             proposal = self.client.get(f"/api/journeys/{journey_id}").json()["proposal"]
-            for field in ("executive_summary", "strategy_snapshot", "scope_snapshot", "investment_summary", "next_steps", "closing_note"):
+            for field in (
+                "executive_summary",
+                "strategy_snapshot",
+                "scope_snapshot",
+                "investment_summary",
+                "next_steps",
+                "closing_note",
+                "opening",
+                "what_we_heard",
+                "objectives",
+                "deliverables",
+                "how_it_works",
+                "exclusions",
+                "gold_standard_ref",
+            ):
                 self.assertTrue(proposal.get(field), (journey_id, field))
+            self.assertGreaterEqual(len(proposal["what_we_heard"]), 3)
+            self.assertGreaterEqual(len(proposal["deliverables"]), 3)
+            self.assertGreaterEqual(len(proposal["next_steps"]), 3)
             self.assertNotIn("Synthetic business problem framing.", proposal["executive_summary"])
             self.assertNotIn("margin", str(proposal).lower())
 

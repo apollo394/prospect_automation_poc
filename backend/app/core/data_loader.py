@@ -50,6 +50,11 @@ def frameworks() -> list[dict]:
     return load_json("frameworks.json")
 
 
+@lru_cache(maxsize=1)
+def knowledge_sources() -> list[dict]:
+    return load_json("knowledge_sources.json")
+
+
 def questionnaires() -> dict:
     return load_json("questionnaires.json")
 
@@ -104,6 +109,7 @@ def clear_data_cache() -> None:
     insights.cache_clear()
     services.cache_clear()
     frameworks.cache_clear()
+    knowledge_sources.cache_clear()
     governed_journeys.cache_clear()
 
 
