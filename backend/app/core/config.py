@@ -44,6 +44,25 @@ class Settings:
         else:
             self.ai_provider = "openrouter" if self.openrouter_api_key else "mock"
 
+        self.supabase_url: str = os.getenv("SUPABASE_URL", "").strip().rstrip("/")
+        self.supabase_publishable_key: str = os.getenv(
+            "SUPABASE_PUBLISHABLE_KEY", os.getenv("SUPABASE_ANON_KEY", "")
+        ).strip()
+        self.supabase_service_role_key: str = os.getenv("SUPABASE_SERVICE_ROLE_KEY", "").strip()
+        # Enforce JWT when Supabase URL is set, unless AUTH_BYPASS=1 (tests/local JSON mode).
+        bypass = os.getenv("AUTH_BYPASS", "").strip().lower() in {"1", "true", "yes"}
+        self.auth_bypass: bool = bypass or not self.supabase_url
+        # Postgres via Supabase when USE_SUPABASE_STORE=1 and credentials present.
+        store_flag = os.getenv("USE_SUPABASE_STORE", "").strip().lower()
+        self.use_supabase_store: bool = store_flag in {"1", "true", "yes"} and bool(
+            self.supabase_url
+            and (self.supabase_service_role_key or self.supabase_publishable_key)
+        )
+
     @property
     def openrouter_enabled(self) -> bool:
         return self.ai_provider == "openrouter" and bool(self.openrouter_api_key)
+
+    @property
+    def supabase_jwks_url(self) -> str:
+        return f"{self.supabase_url}/auth/v1/.well-known/jwks.json"

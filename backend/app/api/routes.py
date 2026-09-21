@@ -2,8 +2,9 @@ from __future__ import annotations
 
 from typing import Optional
 
-from fastapi import APIRouter, Body, HTTPException
+from fastapi import APIRouter, Body, Depends, HTTPException
 
+from app.dependencies.auth import AuthUser, require_user
 from app.schemas.models import (
     AnalyzeCallRequest,
     AssessmentAction,
@@ -24,14 +25,15 @@ from app.services.recommendation_service import list_frameworks, list_services
 from app.services import journey_service
 
 router = APIRouter(prefix="/api")
+protected = APIRouter(prefix="/api", dependencies=[Depends(require_user)])
 
 
-@router.get("/journeys")
+@protected.get("/journeys")
 def get_journeys():
     return journey_service.list_journeys()
 
 
-@router.get("/journeys/{journey_id}")
+@protected.get("/journeys/{journey_id}")
 def get_journey(journey_id: str):
     result = journey_service.get_journey(journey_id)
     if result is None:
@@ -39,10 +41,11 @@ def get_journey(journey_id: str):
     return result
 
 
-@router.post("/journeys/{journey_id}/actions")
-def journey_action(journey_id: str, body: JourneyAction):
+@protected.post("/journeys/{journey_id}/actions")
+def journey_action(journey_id: str, body: JourneyAction, user: AuthUser = Depends(require_user)):
+    actor = body.actor or user.email
     try:
-        return journey_service.apply_action(journey_id, body.action, body.role, body.actor, body.reason, body.edits)
+        return journey_service.apply_action(journey_id, body.action, body.role, actor, body.reason, body.edits)
     except KeyError as exc:
         raise HTTPException(status_code=404, detail="Journey not found") from exc
     except RuntimeError as exc:
@@ -56,7 +59,7 @@ def health():
     return {"status": "ok", "product": "Prospect Intelligence", **provider_info()}
 
 
-@router.post("/analyze-call")
+@protected.post("/analyze-call")
 def analyze_call(body: AnalyzeCallRequest):
     try:
         result = intake_service.create_from_call(
@@ -69,12 +72,12 @@ def analyze_call(body: AnalyzeCallRequest):
     return result
 
 
-@router.get("/prospects")
+@protected.get("/prospects")
 def get_prospects():
     return prospect_service.list_prospects()
 
 
-@router.get("/prospects/{prospect_id}")
+@protected.get("/prospects/{prospect_id}")
 def get_prospect(prospect_id: str):
     prospect = prospect_service.get_prospect(prospect_id)
     if not prospect:
@@ -83,28 +86,28 @@ def get_prospect(prospect_id: str):
     return {"prospect": prospect, "transcript": transcript}
 
 
-@router.post("/prospects/{prospect_id}/analyze")
+@protected.post("/prospects/{prospect_id}/analyze")
 def analyze(prospect_id: str):
     if not prospect_service.get_prospect(prospect_id):
         raise HTTPException(status_code=404, detail="Prospect not found")
     return analysis_service.analyze_prospect(prospect_id)
 
 
-@router.get("/prospects/{prospect_id}/intelligence")
+@protected.get("/prospects/{prospect_id}/intelligence")
 def intelligence(prospect_id: str):
     if not prospect_service.get_prospect(prospect_id):
         raise HTTPException(status_code=404, detail="Prospect not found")
     return analysis_service.get_intelligence(prospect_id)
 
 
-@router.get("/prospects/{prospect_id}/questionnaire")
+@protected.get("/prospects/{prospect_id}/questionnaire")
 def get_questionnaire(prospect_id: str):
     if not prospect_service.get_prospect(prospect_id):
         raise HTTPException(status_code=404, detail="Prospect not found")
     return questionnaire_service.get_or_create_questionnaire(prospect_id)
 
 
-@router.post("/prospects/{prospect_id}/questionnaire")
+@protected.post("/prospects/{prospect_id}/questionnaire")
 def post_questionnaire(
     prospect_id: str,
     body: Optional[QuestionAction] = Body(default=None),
@@ -116,14 +119,14 @@ def post_questionnaire(
     return questionnaire_service.apply_question_action(prospect_id, body)
 
 
-@router.get("/prospects/{prospect_id}/assessment")
+@protected.get("/prospects/{prospect_id}/assessment")
 def get_assessment(prospect_id: str):
     if not prospect_service.get_prospect(prospect_id):
         raise HTTPException(status_code=404, detail="Prospect not found")
     return assessment_service.get_or_create_assessment(prospect_id)
 
 
-@router.post("/prospects/{prospect_id}/assessment")
+@protected.post("/prospects/{prospect_id}/assessment")
 def post_assessment(
     prospect_id: str,
     body: Optional[AssessmentAction] = Body(default=None),
@@ -135,14 +138,14 @@ def post_assessment(
     return assessment_service.apply_assessment_action(prospect_id, body)
 
 
-@router.get("/prospects/{prospect_id}/scope")
+@protected.get("/prospects/{prospect_id}/scope")
 def get_scope(prospect_id: str):
     if not prospect_service.get_prospect(prospect_id):
         raise HTTPException(status_code=404, detail="Prospect not found")
     return commercial_service.get_or_create_scope(prospect_id)
 
 
-@router.post("/prospects/{prospect_id}/scope")
+@protected.post("/prospects/{prospect_id}/scope")
 def post_scope(
     prospect_id: str,
     body: Optional[CommercialAction] = Body(default=None),
@@ -154,14 +157,14 @@ def post_scope(
     return commercial_service.apply_scope_action(prospect_id, body)
 
 
-@router.get("/prospects/{prospect_id}/pricing")
+@protected.get("/prospects/{prospect_id}/pricing")
 def get_pricing(prospect_id: str):
     if not prospect_service.get_prospect(prospect_id):
         raise HTTPException(status_code=404, detail="Prospect not found")
     return commercial_service.get_or_create_pricing(prospect_id)
 
 
-@router.post("/prospects/{prospect_id}/pricing")
+@protected.post("/prospects/{prospect_id}/pricing")
 def post_pricing(
     prospect_id: str,
     body: Optional[CommercialAction] = Body(default=None),
@@ -173,14 +176,14 @@ def post_pricing(
     return commercial_service.apply_pricing_action(prospect_id, body)
 
 
-@router.get("/prospects/{prospect_id}/proposal")
+@protected.get("/prospects/{prospect_id}/proposal")
 def get_proposal(prospect_id: str):
     if not prospect_service.get_prospect(prospect_id):
         raise HTTPException(status_code=404, detail="Prospect not found")
     return commercial_service.get_or_create_proposal(prospect_id)
 
 
-@router.post("/prospects/{prospect_id}/proposal")
+@protected.post("/prospects/{prospect_id}/proposal")
 def post_proposal(
     prospect_id: str,
     body: Optional[CommercialAction] = Body(default=None),
@@ -192,23 +195,25 @@ def post_proposal(
     return commercial_service.apply_proposal_action(prospect_id, body)
 
 
-@router.get("/work-queue")
+@protected.get("/work-queue")
 def work_queue():
     return prospect_service.work_queue()
 
 
-@router.get("/frameworks")
+@protected.get("/frameworks")
 def frameworks():
     return list_frameworks()
 
 
-@router.get("/knowledge/sources")
+@protected.get("/knowledge/sources")
 def knowledge_sources():
-    from app.core import data_loader
+    from app.core import data_loader, store
 
+    if store.use_supabase():
+        return store.list_catalog("knowledge_sources")
     return data_loader.knowledge_sources()
 
 
-@router.get("/services")
+@protected.get("/services")
 def services():
     return list_services()

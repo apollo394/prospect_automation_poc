@@ -26,16 +26,14 @@ _COMMERCIAL_QUEUE = {
 
 
 def _base_prospects() -> list[dict]:
-    by_id: dict[str, dict] = {p["id"]: dict(p) for p in data_loader.prospects()}
+    from app.core import store
+
+    seed = store.list_prospects() if store.use_supabase() else data_loader.prospects()
+    by_id: dict[str, dict] = {p["id"]: dict(p) for p in seed}
     for pid, raw in data_loader.runtime().get("custom_prospects", {}).items():
         by_id[pid] = dict(raw)
-    # newest custom first after seeds: keep seed order, append customs
-    seed_ids = [p["id"] for p in data_loader.prospects()]
-    customs = [
-        by_id[pid]
-        for pid in by_id
-        if pid not in seed_ids
-    ]
+    seed_ids = [p["id"] for p in seed]
+    customs = [by_id[pid] for pid in by_id if pid not in seed_ids]
     return [by_id[pid] for pid in seed_ids if pid in by_id] + list(reversed(customs))
 
 

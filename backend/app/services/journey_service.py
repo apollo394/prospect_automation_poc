@@ -1,10 +1,17 @@
 from copy import deepcopy
 from datetime import datetime, timezone
+from app.core import store
 from app.core.data_loader import governed_journeys
 
 STAGES = ["prepare_diagnostic", "import_transcript", "generate_questionnaire", "review_returned_questionnaire", "approve_recommendation", "approve_scope", "reveal_pricing", "approve_pricing", "reveal_proposal", "approve_proposal"]
 APPROVALS = {"approve_recommendation": "recommendation", "approve_scope": "scope", "approve_pricing": "pricing", "approve_proposal": "proposal"}
 _state = {}
+
+
+def _fixture_rows():
+    if store.use_supabase():
+        return store.list_journeys_payloads()
+    return governed_journeys()
 
 LEAD_PROFILES = {
     "cedar-strategy": {
@@ -333,9 +340,28 @@ PROPOSALS = {
 def reset_runtime():
     _state.clear()
 
-def _find(jid): return next((x for x in governed_journeys() if x["id"] == jid), None)
+def _hydrate_state(jid: str, item: dict) -> None:
+    if jid in _state:
+        return
+    wf = item.get("workflow") or {}
+    entry = {
+        "completed": list(wf.get("completed_stages") or []),
+        "revealed": list(wf.get("revealed_stages") or []),
+        "approval_history": list(wf.get("approval_history") or []),
+        "toast": wf.get("toast") or "",
+    }
+    if wf.get("transcript_text"):
+        entry["transcript_text"] = wf["transcript_text"]
+    _state[jid] = entry
+
+def _find(jid):
+    item = next((x for x in _fixture_rows() if x["id"] == jid), None)
+    if item is not None:
+        _hydrate_state(jid, item)
+    return item
+
 def list_journeys():
-    journeys = [get_journey(item["id"]) for item in governed_journeys()]
+    journeys = [get_journey(item["id"]) for item in _fixture_rows()]
     for journey in journeys:
         journey["pricing"].pop("foundation_rationale", None)
     return journeys
@@ -475,7 +501,8 @@ def _complete_fixture_shape(result):
     })
 
 def apply_action(jid, action, role, actor, reason, edits=None):
-    if _find(jid) is None: raise KeyError(jid)
+    item = _find(jid)
+    if item is None: raise KeyError(jid)
     if action not in STAGES: raise ValueError("Unsupported journey action")
     state = _state.setdefault(jid, {"completed": [], "revealed": [], "approval_history": [], "toast": ""})
     expected = STAGES[len(state["completed"])] if len(state["completed"]) < len(STAGES) else None
@@ -489,4 +516,14 @@ def apply_action(jid, action, role, actor, reason, edits=None):
     if action.startswith("reveal_"): state["revealed"].append(action.removeprefix("reveal_"))
     if action in APPROVALS: state["approval_history"].append({"stage": APPROVALS[action], "role": role, "actor": actor, "reason": reason, "timestamp": datetime.now(timezone.utc).isoformat()})
     state["toast"] = f"{action.replace('_', ' ').title()} complete"
+    if store.use_supabase():
+        base = deepcopy(item)
+        base["workflow"] = {
+            "completed_stages": list(state["completed"]),
+            "revealed_stages": list(state["revealed"]),
+            "approval_history": list(state["approval_history"]),
+            "toast": state["toast"],
+            **({"transcript_text": state["transcript_text"]} if state.get("transcript_text") else {}),
+        }
+        store.save_journey_payload(jid, base)
     return get_journey(jid)

@@ -219,15 +219,33 @@ export type IntelligenceResponse = {
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "";
 
+async function getAccessToken(): Promise<string | null> {
+  if (typeof window === "undefined") return null;
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY) {
+    return null;
+  }
+  const { createClient } = await import("@/lib/supabase/client");
+  const supabase = createClient();
+  const { data } = await supabase.auth.getSession();
+  return data.session?.access_token ?? null;
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const token = await getAccessToken();
   const res = await fetch(`${API_BASE}${path}`, {
     ...init,
     headers: {
       "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...(init?.headers || {}),
     },
     cache: "no-store",
   });
+  if (res.status === 401 && typeof window !== "undefined") {
+    const next = `${window.location.pathname}${window.location.search}`;
+    window.location.assign(`/login?next=${encodeURIComponent(next)}`);
+    throw new Error("Not authenticated");
+  }
   if (!res.ok) {
     const text = await res.text();
     throw new Error(text || `Request failed: ${res.status}`);

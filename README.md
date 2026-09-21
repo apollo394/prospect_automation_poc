@@ -8,9 +8,38 @@ Brand source: [simplicreative.com](https://simplicreative.com/about/)
 
 ## Stack
 
-- **Frontend:** Next.js 15, TypeScript, App Router, Tailwind, Lucide
-- **Backend:** Python FastAPI + Pydantic
+- **Frontend:** Next.js 15, TypeScript, App Router, Tailwind, Lucide, Supabase Auth (`@supabase/ssr`)
+- **Backend:** Python FastAPI + Pydantic + Supabase JWT verification
+- **Data:** JSON fixtures by default; optional Supabase Postgres (`USE_SUPABASE_STORE=1`) with RLS
 - **AI:** Pluggable `AIProvider` — **OpenRouter** (default when `OPENROUTER_API_KEY` is set) with `MockAIProvider` fallback
+
+## Auth (Phase 1)
+
+Email/password via Supabase. Only `@simplicreative.com` may sign up or stay signed in (UI + Auth hook + middleware + FastAPI).
+
+1. Create a Supabase project; enable Email provider.
+2. Apply SQL in `supabase/migrations/` (SQL editor or CLI).
+3. Enable **Before User Created** hook → `pg-functions://postgres/public/hook_before_user_created` (see `supabase/config.toml`).
+4. Site URL / redirect allow list: `http://localhost:3002`.
+5. For local testing, disable “Confirm email” to avoid the ~2 emails/hour built-in SMTP limit.
+6. Frontend `frontend/.env.local` from `frontend/.env.example`.
+7. Backend `SUPABASE_URL` + publishable key (JWT). Optional service role for seed only.
+
+```bash
+# Seed Postgres from JSON (service role)
+cd backend && source .venv/bin/activate
+USE_SUPABASE_STORE=0 python scripts/seed_supabase.py
+# Then set USE_SUPABASE_STORE=1 in backend/.env
+```
+
+Google OAuth is Phase 2 (not wired yet).
+
+### Tests
+
+```bash
+cd backend && source .venv/bin/activate && python -m unittest discover -s tests -v
+cd frontend && npm test
+```
 
 ## Quick start
 
@@ -84,4 +113,4 @@ docs/superpowers/  Design specs + plans
 
 ## Out of scope
 
-Monday, Slack, CRM, client portal, PM, GA/GSC, payments, e-sign/PDF, production auth, FAST scoring, website crawls, live analytics integrations, and live pricing APIs.
+Monday, Slack, CRM, client portal, PM, GA/GSC, payments, e-sign/PDF, Google OAuth (Phase 2), role-based RLS, FAST scoring, website crawls, live analytics integrations, and live pricing APIs.

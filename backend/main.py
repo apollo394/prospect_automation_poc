@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import os
 from pathlib import Path
 
@@ -7,10 +8,15 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api.routes import router
+from app.api.routes import protected, router
 
 # Load backend/.env if present (OPENROUTER_API_KEY, etc.)
 load_dotenv(Path(__file__).resolve().parent / ".env")
+
+logging.basicConfig(
+    level=os.getenv("LOG_LEVEL", "INFO"),
+    format="%(asctime)s %(levelname)s %(name)s %(message)s",
+)
 
 
 def _cors_origins() -> list[str]:
@@ -38,6 +44,7 @@ app.add_middleware(
 )
 
 app.include_router(router)
+app.include_router(protected)
 
 
 @app.get("/")

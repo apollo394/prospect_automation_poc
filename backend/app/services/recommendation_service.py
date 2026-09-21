@@ -6,11 +6,17 @@ from app.services.assessment_service import get_or_create_assessment
 
 
 def list_services() -> list[ServiceCatalogItem]:
-    return [ServiceCatalogItem(**s) for s in data_loader.services()]
+    from app.core import store
+
+    rows = store.list_catalog("services") if store.use_supabase() else data_loader.services()
+    return [ServiceCatalogItem(**s) for s in rows]
 
 
 def list_frameworks() -> list[Framework]:
-    return [Framework(**f) for f in data_loader.frameworks()]
+    from app.core import store
+
+    rows = store.list_catalog("frameworks") if store.use_supabase() else data_loader.frameworks()
+    return [Framework(**f) for f in rows]
 
 
 def recommendations_for(prospect_id: str):

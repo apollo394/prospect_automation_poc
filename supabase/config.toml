@@ -1,0 +1,7 @@
+# Auth hook wiring (apply SQL migrations first, then enable in dashboard or CLI).
+# Dashboard: Authentication → Hooks → Before User Created
+# URI: pg-functions://postgres/public/hook_before_user_created
+
+[auth.hook.before_user_created]
+enabled = true
+uri = "pg-functions://postgres/public/hook_before_user_created"

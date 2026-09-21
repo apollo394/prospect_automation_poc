@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   HelpCircle,
   LayoutList,
+  LogOut,
   Settings,
   Users,
 } from "lucide-react";
@@ -19,6 +20,19 @@ const nav = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+
+  async function signOut() {
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+      router.push("/login");
+      return;
+    }
+    const { createClient } = await import("@/lib/supabase/client");
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.replace("/login");
+    router.refresh();
+  }
 
   return (
     <aside className="relative flex h-dvh w-[260px] shrink-0 flex-col overflow-hidden bg-sc-night text-white">
@@ -89,11 +103,19 @@ export function Sidebar() {
         })}
       </nav>
 
-      <div className="relative border-t border-white/10 px-5 py-4">
+      <div className="relative space-y-3 border-t border-white/10 px-5 py-4">
+        <button
+          type="button"
+          onClick={() => void signOut()}
+          className="inline-flex items-center gap-2 text-xs font-medium text-white/55 transition hover:text-white"
+        >
+          <LogOut className="h-3.5 w-3.5" />
+          Sign out
+        </button>
         <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-white/35">
           SimpliCreative · Internal
         </p>
-        <p className="mt-1 text-xs text-white/50">AI prepares · Humans approve</p>
+        <p className="text-xs text-white/50">AI prepares · Humans approve</p>
       </div>
     </aside>
   );
