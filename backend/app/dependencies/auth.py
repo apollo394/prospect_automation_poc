@@ -66,6 +66,12 @@ def require_user(
         return user
     except HTTPException:
         raise
+    except ModuleNotFoundError as exc:
+        logger.error(
+            "auth_failed missing_dependency module=%s hint=install backend requirements in the venv used by ./serve",
+            getattr(exc, "name", str(exc)),
+        )
+        raise HTTPException(status_code=503, detail="Auth dependency missing on server") from exc
     except Exception as exc:
         logger.warning("auth_failed error_type=%s", type(exc).__name__)
         raise HTTPException(status_code=401, detail="Invalid token") from exc

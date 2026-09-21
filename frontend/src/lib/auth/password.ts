@@ -1,51 +1,82 @@
-/** NIST SP 800-63B Rev. 4 oriented rules: length over composition. */
+/** Signup password rules + live requirement checks. */
 
-export const PASSWORD_MIN_LENGTH = 15;
+export const PASSWORD_MIN_LENGTH = 8;
 export const PASSWORD_MAX_LENGTH = 128;
 
-/** Tiny local denylist — not a substitute for HIBP, but catches obvious choices. */
+export type PasswordRequirementId = "length" | "number_or_symbol" | "mixed_case";
+
+export type PasswordRequirement = {
+  id: PasswordRequirementId;
+  label: string;
+  met: boolean;
+};
+
 const COMMON_PASSWORDS = new Set(
   [
     "password",
-    "passwordpassword",
-    "123456789012345",
-    "1234567890123456",
-    "qwertyuiopasdfg",
-    "letmeinletmein1",
-    "simplicreative1",
-    "simplicreative12",
-    "changemechangeme",
-    "iloveyouiloveyou",
+    "password1",
+    "password!",
+    "Password1",
+    "Password1!",
+    "12345678",
+    "qwerty12",
+    "abcdefgh",
+    "changeme1",
+    "letmein1!",
   ].map((p) => p.toLowerCase())
 );
 
+export function passwordRequirements(password: string): PasswordRequirement[] {
+  const value = password ?? "";
+  return [
+    {
+      id: "length",
+      label: `At least ${PASSWORD_MIN_LENGTH} characters`,
+      met: value.length >= PASSWORD_MIN_LENGTH,
+    },
+    {
+      id: "number_or_symbol",
+      label: "At least one number (0-9) or a symbol",
+      met: /[\d\W_]/.test(value),
+    },
+    {
+      id: "mixed_case",
+      label: "Lowercase (a-z) and uppercase (A-Z)",
+      met: /[a-z]/.test(value) && /[A-Z]/.test(value),
+    },
+  ];
+}
+
 export type PasswordIssue =
-  | "too_short"
-  | "too_long"
+  | "requirements"
   | "common"
-  | "whitespace_only";
+  | "too_long"
+  | "whitespace_only"
+  | "mismatch";
 
 export function validatePassword(password: string): PasswordIssue | null {
   if (!password || !password.trim()) return "whitespace_only";
-  if (password.length < PASSWORD_MIN_LENGTH) return "too_short";
   if (password.length > PASSWORD_MAX_LENGTH) return "too_long";
   if (COMMON_PASSWORDS.has(password.toLowerCase())) return "common";
+  if (passwordRequirements(password).some((r) => !r.met)) return "requirements";
   return null;
+}
+
+export function passwordsMatch(password: string, confirm: string): boolean {
+  return password.length > 0 && password === confirm;
 }
 
 export function passwordIssueMessage(issue: PasswordIssue): string {
   switch (issue) {
-    case "too_short":
-      return `Use at least ${PASSWORD_MIN_LENGTH} characters (a passphrase is ideal).`;
+    case "requirements":
+      return "Password does not meet all requirements yet.";
     case "too_long":
       return `Password must be at most ${PASSWORD_MAX_LENGTH} characters.`;
     case "common":
       return "That password is too common. Choose something harder to guess.";
     case "whitespace_only":
       return "Enter a password.";
+    case "mismatch":
+      return "Passwords do not match.";
   }
-}
-
-export function passwordHint(): string {
-  return `At least ${PASSWORD_MIN_LENGTH} characters. Prefer a long passphrase; special characters are optional.`;
 }

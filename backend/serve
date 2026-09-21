@@ -2,10 +2,19 @@
 # Start API on project default port 8002 (from .env UVICORN_PORT).
 set -euo pipefail
 cd "$(dirname "$0")"
-ROOT="$(cd .. && pwd)"
-PY="$ROOT/.venv/bin/python"
-if [[ ! -x "$PY" ]]; then
-  PY="${PYTHON:-python3}"
+# Always prefer backend/.venv (requirements.txt lives here).
+if [[ -x .venv/bin/python ]]; then
+  PY="$(pwd)/.venv/bin/python"
+elif [[ -x ../.venv/bin/python ]]; then
+  PY="$(cd .. && pwd)/.venv/bin/python"
+else
+  echo "No virtualenv found. Create one: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt" >&2
+  exit 1
 fi
+if ! "$PY" -c "import jwt" 2>/dev/null; then
+  echo "PyJWT missing in $PY — run: $PY -m pip install -r requirements.txt" >&2
+  exit 1
+fi
+echo "Using Python: $PY" >&2
 # python -m uvicorn: venv console_scripts can break when the project is moved.
 exec "$PY" -m dotenv run -- "$PY" -m uvicorn main:app --reload --host 127.0.0.1 "$@"

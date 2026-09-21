@@ -10,6 +10,7 @@ import {
   PASSWORD_MAX_LENGTH,
   PASSWORD_MIN_LENGTH,
   passwordIssueMessage,
+  passwordsMatch,
   validatePassword,
 } from "@/lib/auth/password";
 import { createClient } from "@/lib/supabase/client";
@@ -18,6 +19,7 @@ export default function SignupPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -43,6 +45,10 @@ export default function SignupPage() {
     const issue = validatePassword(password);
     if (issue) {
       setError(passwordIssueMessage(issue));
+      return;
+    }
+    if (!passwordsMatch(password, confirmPassword)) {
+      setError(passwordIssueMessage("mismatch"));
       return;
     }
     if (!configured) {
@@ -118,7 +124,15 @@ export default function SignupPage() {
           maxLength={PASSWORD_MAX_LENGTH}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          showHint
+          showRequirements
+        />
+        <PasswordField
+          label="Re-type password"
+          autoComplete="new-password"
+          required
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          matchAgainst={password}
         />
         {error && (
           <p className="rounded-sc-sm border border-sc-danger/20 bg-[var(--sc-danger-soft)] px-3 py-2 text-sm text-sc-danger">
