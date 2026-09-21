@@ -12,7 +12,7 @@ LEAD_PROFILES = {
         "contact_name": "Maya Thompson",
         "contact_role": "VP, Growth",
         "website": "cedarstrategy.example",
-        "campaign": "LinkedIn · Lean Marketing Scorecard",
+        "campaign": "LinkedIn · SimpliSignals",
         "headline": "The self-assessment indicates potential positioning and conversion friction to explore.",
         "score": 46,
         "dimensions": [("Discoverability", 8), ("Credibility", 11), ("Performance", 13), ("Agility", 14)],
@@ -32,7 +32,7 @@ LEAD_PROFILES = {
         "contact_name": "Elena Brooks",
         "contact_role": "Principal",
         "website": "harboradvisory.example",
-        "campaign": "LinkedIn · Lean Marketing Scorecard",
+        "campaign": "LinkedIn · SimpliSignals",
         "headline": "The self-assessment suggests the team may benefit from reviewing its website conversion path.",
         "score": 71,
         "dimensions": [("Discoverability", 16), ("Credibility", 19), ("Performance", 17), ("Agility", 19)],
@@ -46,6 +46,45 @@ LEAD_PROFILES = {
         "headline": "The self-assessment suggests ongoing website performance questions worth validating.",
         "score": 78,
         "dimensions": [("Discoverability", 18), ("Credibility", 21), ("Performance", 20), ("Agility", 19)],
+    },
+}
+
+ROUTE_META = {
+    "cedar-strategy": {
+        "route_decision": "optional_blueprint",
+        "route_decision_summary": "Strategic uncertainty remains after the Diagnostic. SimpliBlueprint is the proposed first engagement before any implementation proposal.",
+        "recommendation_summary": "SimpliBlueprint — strategy before build. Cedar still needs buyer, offer, and conversion path settled.",
+        "alternatives": [
+            {"name": "SimpliFoundation", "not_selected_because": "Custom implementation would start before strategic direction is approved."},
+            {"name": "Templated WordPress", "not_selected_because": "Core positioning and message architecture are not yet validated."},
+        ],
+    },
+    "atlas-health": {
+        "route_decision": "direct_to_implementation",
+        "route_decision_summary": "Strategy is clear enough to scope custom implementation. Blueprint is skipped; SimpliFoundation is the proposed first engagement.",
+        "recommendation_summary": "SimpliFoundation — Direct-to-Foundation. Atlas needs a governed website foundation, not another strategy phase.",
+        "alternatives": [
+            {"name": "SimpliBlueprint", "not_selected_because": "Diagnostic and questionnaire evidence show enough strategic clarity to scope Foundation responsibly."},
+            {"name": "Templated WordPress", "not_selected_because": "Custom IA, integrations, and measurement requirements exceed the productised boundary."},
+        ],
+    },
+    "harbor-advisory": {
+        "route_decision": "direct_to_implementation",
+        "route_decision_summary": "Offer and positioning appear stable. Templated WordPress is the proposed route; Blueprint is not required.",
+        "recommendation_summary": "Templated WordPress — bounded launch website with an approved conversion path.",
+        "alternatives": [
+            {"name": "SimpliBlueprint", "not_selected_because": "Positioning and proof points are already approved for a productised rebuild."},
+            {"name": "SimpliFoundation", "not_selected_because": "No bespoke platform or integration needs justify a custom foundation engagement."},
+        ],
+    },
+    "northstar-services": {
+        "route_decision": "direct_to_implementation",
+        "route_decision_summary": "Ongoing responsibility fits better than a new build. SimpliCARE is the proposed route; Blueprint is not required.",
+        "recommendation_summary": "SimpliCARE — governed ongoing website care and optimisation cadence.",
+        "alternatives": [
+            {"name": "SimpliBlueprint", "not_selected_because": "Northstar is not buying net-new strategy work; the need is operational continuity."},
+            {"name": "SimpliFoundation", "not_selected_because": "A one-off rebuild would reopen work the team is not requesting."},
+        ],
     },
 }
 
@@ -103,7 +142,7 @@ PROPOSALS = {
             "The output is a governed decision package, not a premature build estimate.",
         ],
         "investigate": [
-            "Buyer, offer, and decision-context synthesis from ScoreApp, site, and call evidence",
+            "Buyer, offer, and decision-context synthesis from SimpliSignals, site, and call evidence",
             "Positioning and message architecture for the priority journey",
             "Conversion-path and priority-page blueprint",
             "Open questions, conflicts, and evidence gaps that still need human judgment",
@@ -353,7 +392,11 @@ def _complete_fixture_shape(result):
         governance.setdefault("citations", default_citations)
         governance.setdefault("open_questions", [])
         governance.setdefault("conflicts", [])
+    route_meta = ROUTE_META[result["id"]]
+    result["route_decision"] = route_meta["route_decision"]
+    result["route_decision_summary"] = route_meta["route_decision_summary"]
     result["scoreapp"].update({
+        "title": "SimpliSignals self-assessment",
         "campaign_context": profile["campaign"],
         "headline": profile["headline"],
         "overall_score": profile["score"],
@@ -362,7 +405,15 @@ def _complete_fixture_shape(result):
     diagnostic_title, hypotheses, questions = scenario["diagnostic"]
     result["diagnostic"].update({"title": diagnostic_title, "summary": "Working hypotheses for a human-led Diagnostic. These are not a root-cause finding or commercial decision.", "hypotheses": hypotheses, "open_questions": questions})
     result["questionnaire"]["questions"] = [{"classification": classification, "reason": reason, "question": question, "answer": answer, "prompt": question, "returned_answer": answer} for classification, reason, question, answer in scenario["questions"]]
-    result["recommendation"].update({"rationale": f"{product} is the proposed route after the synthetic Diagnostic, questionnaire and human review.", "alternatives_not_selected": ["A different route would either leave the documented uncertainty unresolved or add delivery beyond the validated need."], "readiness": "ready"})
+    alternatives = route_meta["alternatives"]
+    result["recommendation"].update({
+        "summary": route_meta["recommendation_summary"],
+        "rationale": f"{product} is the proposed route after the synthetic Diagnostic, questionnaire, and human review.",
+        "alternatives": alternatives,
+        "alternatives_not_selected": [f"{item['name']}: {item['not_selected_because']}" for item in alternatives],
+        "readiness": {"strategic": "ready", "commercial": "ready", "proposal": "ready"},
+        "route_decision": route_meta["route_decision"],
+    })
     scope_title, deliverables, milestones, exclusions = scenario["scope"]
     result["scope"].update({"title": scope_title, "summary": "Illustrative scope draft that requires authorised human approval before pricing is revealed.", "deliverables": deliverables, "phases": [{"id": f"phase-{index + 1}", "name": milestone, "duration": "Timing confirmed at approval", "deliverables": [deliverables[index]] if index < len(deliverables) else []} for index, milestone in enumerate(milestones)], "exclusions": exclusions, "assumptions": ["Synthetic stakeholders provide timely review and approved source material."], "dependencies": ["Final content, access and approvals are confirmed in the human scope review."], "milestones": milestones, "client_responsibilities": ["Name an accountable reviewer and provide feedback at agreed decision points."]})
     result["pricing"].update({"currency": "USD", "recommended_price": result["pricing"]["total"], "route_rationale": scenario["price"]})

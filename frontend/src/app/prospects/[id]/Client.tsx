@@ -37,7 +37,7 @@ export default function ProspectLeadClient({ id }: { id: string }) {
       <header className="sc-panel p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[.14em] text-sc-accent">ScoreApp lead · synthetic</p>
+            <p className="text-xs font-semibold uppercase tracking-[.14em] text-sc-accent">SimpliSignals lead · ScoreApp · synthetic</p>
             <h1 className="mt-2 text-3xl font-bold text-sc-ink">{journey.company_name}</h1>
             <p className="mt-2 text-sm text-sc-muted">{journey.synthetic_disclaimer}</p>
           </div>
@@ -47,7 +47,7 @@ export default function ProspectLeadClient({ id }: { id: string }) {
           <p className="text-sm font-semibold text-sc-ink">Next action</p>
           <p className="mt-1 text-sm text-sc-muted">
             {available
-              ? "Prepare the diagnostic from the ScoreApp and website evidence context."
+              ? "Prepare the diagnostic from SimpliSignals (ScoreApp) and website evidence context."
               : `Resume this saved journey at ${journey.workflow.current_stage}.`}
           </p>
           {available ? (

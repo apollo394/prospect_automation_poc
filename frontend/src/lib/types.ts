@@ -65,6 +65,8 @@ export type GovernedJourney = {
   id: string;
   company_name: string;
   recommended_product: string | null;
+  route_decision?: "optional_blueprint" | "direct_to_implementation";
+  route_decision_summary?: string;
   synthetic: boolean;
   synthetic_disclaimer: string;
   prospect: Record<string, unknown>;

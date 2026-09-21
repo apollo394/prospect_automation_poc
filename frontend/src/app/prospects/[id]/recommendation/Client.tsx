@@ -36,8 +36,12 @@ export default function RecommendationClient({ id }: { id: string }) {
         <p className="text-xs font-semibold uppercase tracking-widest text-sc-accent">Recommendation stage</p>
         <h1 className="mt-2 text-3xl font-bold text-sc-ink">A decision a strategist can govern</h1>
         <p className="mt-2 text-sm text-sc-muted">
-          The system proposes one route from the evidence; an authorised reviewer alone releases commercial work.
+          After the Diagnostic, the system proposes optional SimpliBlueprint or a direct package. An authorised reviewer alone
+          releases commercial work.
         </p>
+        {typeof journey.route_decision_summary === "string" && (
+          <p className="mt-3 rounded-sc-sm bg-sc-canvas p-3 text-sm text-sc-charcoal">{journey.route_decision_summary}</p>
+        )}
       </header>
       {error && <p className="text-sc-danger">{error}</p>}
       <RecommendationDecision recommendation={journey.recommendation} />

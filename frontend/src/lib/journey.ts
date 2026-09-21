@@ -41,13 +41,13 @@ export function journeyStepIndex(workflow: JourneyWorkflow) {
 export function journeyQueueCopy(stage: JourneyAction | "complete") {
   const copy: Record<JourneyAction | "complete", { headline: string; detail: string; action_label: string }> = {
     prepare_diagnostic: {
-      headline: "Imported ScoreApp lead",
-      detail: "Prepare the evidence-led diagnostic from ScoreApp and website context.",
+      headline: "Imported SimpliSignals lead",
+      detail: "Prepare the evidence-led diagnostic from SimpliSignals (ScoreApp) and website context.",
       action_label: "Prepare Diagnostic",
     },
     import_transcript: {
-      headline: "Diagnostic awaiting call record",
-      detail: "Review hypotheses, then save the synthetic transcript to continue.",
+      headline: "Diagnostic awaiting Fathom call record",
+      detail: "Select the Executive Diagnostic meeting from your connected Fathom account, or paste transcript as fallback.",
       action_label: "Continue Diagnostic",
     },
     generate_questionnaire: {

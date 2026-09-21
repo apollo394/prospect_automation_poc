@@ -22,12 +22,20 @@ class GovernedJourneysTests(unittest.TestCase):
         atlas = next(item for item in response.json() if item["id"] == "atlas-health")
         self.assertNotIn("foundation_rationale", atlas["pricing"])
 
+    def test_cedar_demonstrates_optional_simpli_blueprint_route(self):
+        cedar = self.client.get("/api/journeys/cedar-strategy").json()
+        self.assertEqual(cedar["recommendation"]["product"], "SimpliBlueprint")
+        self.assertEqual(cedar["route_decision"], "optional_blueprint")
+        self.assertTrue(cedar["recommendation"]["alternatives"])
+        self.assertIn("SimpliFoundation", cedar["recommendation"]["alternatives_not_selected"][0])
+
     def test_detail_contains_product_and_internal_pricing_rationale_is_not_proposal(self):
         detail = self.client.get("/api/journeys/atlas-health")
         self.assertEqual(detail.status_code, 200)
         body = detail.json()
         self.assertIsNone(body["recommended_product"])
         self.assertEqual(body["recommendation"]["product"], "SimpliFoundation")
+        self.assertEqual(body["route_decision"], "direct_to_implementation")
         self.assertTrue(body["pricing"]["internal_rationale"])
         self.assertNotIn("internal_rationale", body["proposal"])
         self.assertNotIn("margin_validation", str(body["proposal"]))
