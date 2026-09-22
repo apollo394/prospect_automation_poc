@@ -384,6 +384,7 @@ export default function BlueprintClient({ id }: { id: string }) {
           {!complete && (
             isApprovalStage(activeStage) ? (
               <ApprovalPanel
+                key={activeStage}
                 decision={artifact}
                 workflow={{ next_action: meta.cta }}
                 onApprove={async () => {
@@ -397,6 +398,7 @@ export default function BlueprintClient({ id }: { id: string }) {
               />
             ) : (
               <ActionButton
+                key={activeStage}
                 idleLabel={meta.cta}
                 busyLabel="Working…"
                 successLabel="Advanced"
