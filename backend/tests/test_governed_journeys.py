@@ -1,15 +1,81 @@
+import os
 import unittest
+
+os.environ.setdefault("AUTH_BYPASS", "1")
+os.environ["USE_SUPABASE_STORE"] = "0"
 
 from fastapi.testclient import TestClient
 
-from main import app
+from app.core.config import get_settings
 from app.core.data_loader import reset_governed_runtime
+from main import app
+
+get_settings.cache_clear()
 
 
 class GovernedJourneysTests(unittest.TestCase):
     def setUp(self):
         reset_governed_runtime()
         self.client = TestClient(app)
+
+    def _advance_to_recommendation(self, journey_id: str) -> None:
+        for action in (
+            "prepare_diagnostic",
+            "import_transcript",
+            "generate_questionnaire",
+            "review_returned_questionnaire",
+        ):
+            response = self.client.post(f"/api/journeys/{journey_id}/actions", json={"action": action})
+            self.assertEqual(response.status_code, 200, (action, response.text))
+
+    def test_human_can_override_ai_route_to_simpli_blueprint(self):
+        self._advance_to_recommendation("atlas-health")
+        before = self.client.get("/api/journeys/atlas-health").json()
+        self.assertEqual(before["recommendation"]["product"], "SimpliFoundation")
+        self.assertEqual(before["route_decision"], "direct_to_implementation")
+        self.assertEqual(before["pricing"]["total"], 7200)
+
+        overridden = self.client.post(
+            "/api/journeys/atlas-health/actions",
+            json={
+                "action": "override_route",
+                "role": "Authorized SimpliCreative reviewer",
+                "actor": "synthetic-strategist",
+                "reason": "Strategic uncertainty remains; force Blueprint",
+                "edits": {"route_override": "SimpliBlueprint"},
+            },
+        )
+        self.assertEqual(overridden.status_code, 200, overridden.text)
+        body = overridden.json()
+        self.assertEqual(body["workflow"]["current_stage"], "approve_recommendation")
+        self.assertEqual(body["route_override"], "SimpliBlueprint")
+        self.assertEqual(body["recommendation"]["product"], "SimpliBlueprint")
+        self.assertEqual(body["route_decision"], "optional_blueprint")
+        self.assertEqual(body["pricing"]["total"], 4800)
+        self.assertIn("Blueprint", body["scope"]["title"])
+        self.assertEqual(body["proposal"]["recommended_engagement"], "SimpliBlueprint")
+        self.assertIn("Atlas Health", body["proposal"]["title"])
+        self.assertTrue(
+            any("SimpliFoundation" in line for line in body["recommendation"]["alternatives_not_selected"])
+        )
+        self.assertNotIn("foundation_rationale", body["pricing"])
+        self.assertNotIn("margin", str(body["proposal"]).lower())
+
+        restored = self.client.post(
+            "/api/journeys/atlas-health/actions",
+            json={
+                "action": "override_route",
+                "role": "Authorized SimpliCreative reviewer",
+                "actor": "synthetic-strategist",
+                "reason": "Restore AI route",
+                "edits": {"route_override": None},
+            },
+        )
+        self.assertEqual(restored.status_code, 200, restored.text)
+        restored_body = restored.json()
+        self.assertIsNone(restored_body.get("route_override"))
+        self.assertEqual(restored_body["recommendation"]["product"], "SimpliFoundation")
+        self.assertEqual(restored_body["pricing"]["total"], 7200)
 
     def test_lists_exactly_four_synthetic_leads(self):
         response = self.client.get("/api/journeys")

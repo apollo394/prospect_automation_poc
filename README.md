@@ -27,8 +27,8 @@ Email/password via Supabase. Only `@simplicreative.com` may sign up or stay sign
 
 ```bash
 # Seed Postgres from JSON (service role)
-cd backend && source .venv/bin/activate
-USE_SUPABASE_STORE=0 python scripts/seed_supabase.py
+source .venv/bin/activate
+cd backend && USE_SUPABASE_STORE=0 python scripts/seed_supabase.py
 # Then set USE_SUPABASE_STORE=1 in backend/.env
 ```
 
@@ -37,7 +37,7 @@ Google OAuth is Phase 2 (not wired yet).
 ### Tests
 
 ```bash
-cd backend && source .venv/bin/activate && python -m unittest discover -s tests -v
+source .venv/bin/activate && cd backend && python -m unittest discover -s tests -v
 cd frontend && npm test
 ```
 
@@ -46,17 +46,19 @@ cd frontend && npm test
 ### Backend
 
 ```bash
-cd backend
-python3 -m venv .venv
+# from repo root — one .venv for the whole project
+uv venv && uv pip install -r backend/requirements.txt
+# or: python3 -m venv .venv && source .venv/bin/activate && pip install -r backend/requirements.txt
+cp backend/.env.example backend/.env   # add your OpenRouter key
+
 source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env   # add your OpenRouter key
-python main.py         # http://127.0.0.1:8002 (default)
+cd backend
+uvicorn main:app --reload             # http://127.0.0.1:8002 (UVICORN_PORT)
 # or: ./serve
-# or: uvicorn main:app --reload --port 8002
+# or: python main.py
 ```
 
-`UVICORN_PORT=8002` is set in `.env`. Prefer `python main.py` or `./serve` — bare `uvicorn` without `--port` still uses uvicorn’s own default (8000).
+After `source .venv/bin/activate`, `UVICORN_PORT` defaults to `8002` so bare `uvicorn` binds there. `backend/.env` also sets `UVICORN_PORT=8002`.
 
 Set in `backend/.env`:
 

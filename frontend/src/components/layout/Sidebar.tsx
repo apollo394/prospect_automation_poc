@@ -74,7 +74,7 @@ export function Sidebar() {
         {nav.map((item) => {
           const active =
             item.href === "/"
-              ? pathname === "/" || pathname.startsWith("/prospects")
+              ? pathname === "/" || pathname.startsWith("/prospects") || pathname.startsWith("/blueprints")
               : pathname.startsWith(item.href);
           const Icon = item.icon;
           return (

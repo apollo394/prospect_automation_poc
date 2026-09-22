@@ -96,7 +96,17 @@ export default function ProposalClient({ id }: { id: string }) {
             onAction={() => act("approve_proposal")}
           />
           {proposalApproved && (
-            <p className="text-sm text-sc-primary">Approved. Simulated HubSpot lifecycle update recorded.</p>
+            <div className="space-y-3">
+              <p className="text-sm text-sc-primary">Approved. Simulated HubSpot lifecycle update recorded.</p>
+              {journey.id === "cedar-strategy" && journey.recommendation.product === "SimpliBlueprint" && (
+                <Link
+                  href="/blueprints/cedar-blueprint"
+                  className="inline-flex items-center gap-2 rounded-sc-sm border border-violet-200 bg-violet-50 px-4 py-3 text-sm font-semibold text-violet-900 transition hover:border-violet-300"
+                >
+                  Activate Blueprint delivery <ArrowRight className="h-4 w-4" />
+                </Link>
+              )}
+            </div>
           )}
         </>
       )}

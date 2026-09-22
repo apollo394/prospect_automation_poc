@@ -1,0 +1,16 @@
+[
+  {
+    "id": "nuvue-blueprint",
+    "company_name": "NuVue",
+    "synthetic_disclaimer": "FICTIONAL gold-standard demonstration engagement. Not a live client record.",
+    "linked_acquisition_journey_id": null,
+    "always_unlocked": true
+  },
+  {
+    "id": "cedar-blueprint",
+    "company_name": "Cedar Strategy Group",
+    "synthetic_disclaimer": "FICTIONAL post-sale Blueprint delivery unlocked after Cedar acquisition proposal approval.",
+    "linked_acquisition_journey_id": "cedar-strategy",
+    "always_unlocked": false
+  }
+]

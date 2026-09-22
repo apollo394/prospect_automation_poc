@@ -2,13 +2,13 @@
 # Start API on project default port 8002 (from .env UVICORN_PORT).
 set -euo pipefail
 cd "$(dirname "$0")"
-# Always prefer backend/.venv (requirements.txt lives here).
-if [[ -x .venv/bin/python ]]; then
-  PY="$(pwd)/.venv/bin/python"
-elif [[ -x ../.venv/bin/python ]]; then
-  PY="$(cd .. && pwd)/.venv/bin/python"
+ROOT="$(cd .. && pwd)"
+# Single project venv lives at repo root.
+if [[ -x "$ROOT/.venv/bin/python" ]]; then
+  PY="$ROOT/.venv/bin/python"
 else
-  echo "No virtualenv found. Create one: python3 -m venv .venv && .venv/bin/pip install -r requirements.txt" >&2
+  echo "No virtualenv found. Create one at repo root:" >&2
+  echo "  cd $ROOT && python3 -m venv .venv && .venv/bin/pip install -r backend/requirements.txt" >&2
   exit 1
 fi
 if ! "$PY" -c "import jwt" 2>/dev/null; then
@@ -16,5 +16,13 @@ if ! "$PY" -c "import jwt" 2>/dev/null; then
   exit 1
 fi
 echo "Using Python: $PY" >&2
-# python -m uvicorn: venv console_scripts can break when the project is moved.
+# dotenv loads backend/.env (incl. UVICORN_PORT=8002); Click maps UVICORN_PORT → --port.
+# Fallback --port if .env is missing. Extra "$@" can still override.
+has_port=0
+for arg in "$@"; do
+  [[ "$arg" == --port || "$arg" == --port=* ]] && has_port=1 && break
+done
+if [[ $has_port -eq 0 ]]; then
+  set -- --port "${UVICORN_PORT:-8002}" "$@"
+fi
 exec "$PY" -m dotenv run -- "$PY" -m uvicorn main:app --reload --host 127.0.0.1 "$@"

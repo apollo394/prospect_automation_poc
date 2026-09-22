@@ -1,10 +1,15 @@
+import logging
 from copy import deepcopy
 from datetime import datetime, timezone
+
 from app.core import store
 from app.core.data_loader import governed_journeys
 
+logger = logging.getLogger(__name__)
+
 STAGES = ["prepare_diagnostic", "import_transcript", "generate_questionnaire", "review_returned_questionnaire", "approve_recommendation", "approve_scope", "reveal_pricing", "approve_pricing", "reveal_proposal", "approve_proposal"]
 APPROVALS = {"approve_recommendation": "recommendation", "approve_scope": "scope", "approve_pricing": "pricing", "approve_proposal": "proposal"}
+BLUEPRINT_PRICE = 4800
 _state = {}
 
 
@@ -340,6 +345,22 @@ PROPOSALS = {
 def reset_runtime():
     _state.clear()
 
+
+def _persist_state(jid: str, item: dict, state: dict) -> None:
+    if not store.use_supabase():
+        return
+    base = deepcopy(item)
+    base["workflow"] = {
+        "completed_stages": list(state["completed"]),
+        "revealed_stages": list(state["revealed"]),
+        "approval_history": list(state["approval_history"]),
+        "toast": state["toast"],
+        **({"transcript_text": state["transcript_text"]} if state.get("transcript_text") else {}),
+        **({"route_override": state["route_override"]} if state.get("route_override") else {}),
+    }
+    store.save_journey_payload(jid, base)
+
+
 def _hydrate_state(jid: str, item: dict) -> None:
     if jid in _state:
         return
@@ -352,98 +373,35 @@ def _hydrate_state(jid: str, item: dict) -> None:
     }
     if wf.get("transcript_text"):
         entry["transcript_text"] = wf["transcript_text"]
+    if wf.get("route_override"):
+        entry["route_override"] = wf["route_override"]
     _state[jid] = entry
 
-def _find(jid):
-    item = next((x for x in _fixture_rows() if x["id"] == jid), None)
-    if item is not None:
-        _hydrate_state(jid, item)
-    return item
 
-def list_journeys():
-    journeys = [get_journey(item["id"]) for item in _fixture_rows()]
-    for journey in journeys:
-        journey["pricing"].pop("foundation_rationale", None)
-    return journeys
-
-def get_journey(jid):
-    item = _find(jid)
-    if item is None: return None
-    result = deepcopy(item)
-    if "assessment" in result: raise ValueError("Invalid governed fixture: use diagnostic/recommendation")
-    _complete_fixture_shape(result)
-    result["synthetic"] = True
-    if "foundation_rationale" in result["pricing"]:
-        result["pricing"]["internal_rationale"] = result["pricing"]["foundation_rationale"]
-    result["proposal"].pop("foundation_rationale", None)
-    result["proposal"].pop("internal_rationale", None)
-    state = _state.get(jid, {"completed": [], "revealed": [], "approval_history": [], "toast": ""})
-    if state.get("transcript_text"):
-        result["diagnostic"]["uploaded_transcript"] = state["transcript_text"]
-    completed = state["completed"]
-    result["recommended_product"] = result["recommendation"]["product"] if "approve_recommendation" in completed else None
-    result["workflow"] = {"current_stage": STAGES[len(completed)] if len(completed) < len(STAGES) else "complete", "completed_stages": completed, "revealed_stages": state["revealed"], "approval_history": state["approval_history"], "toast": state["toast"]}
-    result["hubspot"] = {"lifecycle_stage": "Proposal sent" if "approve_proposal" in completed else "Lead"}
-    return result
-
-def _complete_fixture_shape(result):
-    """Normalize the deterministic fixture into the dashboard's artifact contract."""
-    product = result["recommendation"]["product"]
-    profile = LEAD_PROFILES[result["id"]]
-    scenario = SCENARIO_CONTENT[result["id"]]
-    result["company_name"] = profile["company_name"]
-    result["prospect"].update({key: value for key, value in profile.items() if key not in {"campaign", "headline", "score", "dimensions", "company_name"}})
-    governing_documents = {
-        "scoreapp": ("GOV-001", "Assessment intake and evidence governance"),
-        "diagnostic": ("DSG-001", "Executive Marketing Diagnostic"),
-        "questionnaire": ("DSG-001", "Personalized diagnostic questionnaire"),
-        "recommendation": ("ENG-001", "Engagement recommendation rules"),
-        "scope": ("ENG-001", "Engagement scope rules"),
-        "pricing": ("PRICE-001", "Pricing and margin-validation rules"),
-        "proposal": ("GOV-001", "Proposal approval governance"),
-    }
-    for name in ("scoreapp", "diagnostic", "questionnaire", "recommendation", "scope", "pricing", "proposal"):
-        artifact = result[name]
-        artifact.setdefault("title", name.replace("_", " ").title())
-        artifact.setdefault("summary", artifact.get("title", "Synthetic artifact"))
-        evidence = artifact.get("evidence", [])
-        artifact["evidence"] = [{"id": e if isinstance(e, str) else e["id"], "source_type": "synthetic_fixture", "quote": "Synthetic record for POC validation.", "evidence_status": "synthetic", "synthetic_label": "FICTIONAL — NOT A REAL CLIENT"} for e in evidence] or [{"id": f"SYN-{result['id']}-{name}", "source_type": "synthetic_fixture", "quote": "Synthetic record for POC validation.", "evidence_status": "synthetic", "synthetic_label": "FICTIONAL — NOT A REAL CLIENT"}]
-        document_id, title = governing_documents[name]
-        governance = artifact.setdefault("governance", {})
-        governance.setdefault("evidence_status", "synthetic")
-        governance.setdefault("ai_confidence", "high")
-        default_citations = [{"document_id": document_id, "version": "v1.0", "title": title}]
-        if name == "recommendation":
-            default_citations.insert(0, {"document_id": "GOV-001", "version": "v1.0", "title": "Commercial decision governance"})
-        governance.setdefault("citations", default_citations)
-        governance.setdefault("open_questions", [])
-        governance.setdefault("conflicts", [])
-    route_meta = ROUTE_META[result["id"]]
-    result["route_decision"] = route_meta["route_decision"]
-    result["route_decision_summary"] = route_meta["route_decision_summary"]
-    result["scoreapp"].update({
-        "title": "SimpliSignals self-assessment",
-        "campaign_context": profile["campaign"],
-        "headline": profile["headline"],
-        "overall_score": profile["score"],
-        "dimensions": [{"name": name, "score": score} for name, score in profile["dimensions"]],
+def _fill_scope(result: dict, scope_tuple: tuple) -> None:
+    scope_title, deliverables, milestones, exclusions = scope_tuple
+    result["scope"].update({
+        "title": scope_title,
+        "summary": "Illustrative scope draft that requires authorised human approval before pricing is revealed.",
+        "deliverables": deliverables,
+        "phases": [
+            {
+                "id": f"phase-{index + 1}",
+                "name": milestone,
+                "duration": "Timing confirmed at approval",
+                "deliverables": [deliverables[index]] if index < len(deliverables) else [],
+            }
+            for index, milestone in enumerate(milestones)
+        ],
+        "exclusions": exclusions,
+        "assumptions": ["Synthetic stakeholders provide timely review and approved source material."],
+        "dependencies": ["Final content, access and approvals are confirmed in the human scope review."],
+        "milestones": milestones,
+        "client_responsibilities": ["Name an accountable reviewer and provide feedback at agreed decision points."],
     })
-    diagnostic_title, hypotheses, questions = scenario["diagnostic"]
-    result["diagnostic"].update({"title": diagnostic_title, "summary": "Working hypotheses for a human-led Diagnostic. These are not a root-cause finding or commercial decision.", "hypotheses": hypotheses, "open_questions": questions})
-    result["questionnaire"]["questions"] = [{"classification": classification, "reason": reason, "question": question, "answer": answer, "prompt": question, "returned_answer": answer} for classification, reason, question, answer in scenario["questions"]]
-    alternatives = route_meta["alternatives"]
-    result["recommendation"].update({
-        "summary": route_meta["recommendation_summary"],
-        "rationale": f"{product} is the proposed route after the synthetic Diagnostic, questionnaire, and human review.",
-        "alternatives": alternatives,
-        "alternatives_not_selected": [f"{item['name']}: {item['not_selected_because']}" for item in alternatives],
-        "readiness": {"strategic": "ready", "commercial": "ready", "proposal": "ready"},
-        "route_decision": route_meta["route_decision"],
-    })
-    scope_title, deliverables, milestones, exclusions = scenario["scope"]
-    result["scope"].update({"title": scope_title, "summary": "Illustrative scope draft that requires authorised human approval before pricing is revealed.", "deliverables": deliverables, "phases": [{"id": f"phase-{index + 1}", "name": milestone, "duration": "Timing confirmed at approval", "deliverables": [deliverables[index]] if index < len(deliverables) else []} for index, milestone in enumerate(milestones)], "exclusions": exclusions, "assumptions": ["Synthetic stakeholders provide timely review and approved source material."], "dependencies": ["Final content, access and approvals are confirmed in the human scope review."], "milestones": milestones, "client_responsibilities": ["Name an accountable reviewer and provide feedback at agreed decision points."]})
-    result["pricing"].update({"currency": "USD", "recommended_price": result["pricing"]["total"], "route_rationale": scenario["price"]})
-    draft = PROPOSALS[result["id"]]
+
+
+def _fill_proposal(result: dict, product: str, draft: dict) -> None:
     profile = LEAD_PROFILES[result["id"]]
     total = result["pricing"]["total"]
     investment_label = "Monthly investment" if product == "SimpliCARE" else "Fixed investment"
@@ -500,30 +458,322 @@ def _complete_fixture_shape(result):
         ),
     })
 
+
+def _blueprint_proposal_for(company: str, contact: str, role: str) -> dict:
+    """Company-agnostic Blueprint proposal skeleton (GS-SALES-001 shaped)."""
+    return {
+        "subtitle": "SimpliBlueprint · strategic clarity before implementation",
+        "gold_standard_ref": "GS-SALES-001",
+        "opening_heading": "Your objective",
+        "opening": (
+            f"{company} needs the website to help the right buyers understand the offer and take a "
+            "qualified next step. Sales still leans on follow-up materials because the current site "
+            "does not make the offer easy to grasp."
+        ),
+        "heard": [
+            "Differentiation is hard to state cleanly in a crowded category.",
+            "The homepage and priority pages do not carry a clear decision path.",
+            "Leadership wants a scoped strategic answer before committing to a rebuild.",
+            "Timing matters; the team needs a reusable direction, not open-ended discovery.",
+        ],
+        "opportunity": (
+            f"The opportunity is to settle buyer, offer, proof, and conversion path before money is "
+            f"spent on design or build. SimpliBlueprint turns the Diagnostic evidence into an approved "
+            f"strategic decision {company} can reuse."
+        ),
+        "objectives": [
+            "Name the primary buyer and the business result the website must support.",
+            "Clarify positioning and the message architecture for priority pages.",
+            "Define the conversion path and what “qualified” looks like.",
+            "Produce a prioritised execution roadmap the team can approve or challenge.",
+        ],
+        "why_this_route": [
+            "Implementation without strategic clarity would polish the wrong story.",
+            "Blueprint keeps design and development out of scope until the decision is settled.",
+            "The output is a governed decision package, not a premature build estimate.",
+        ],
+        "investigate": [
+            "Buyer, offer, and decision-context synthesis from SimpliSignals, site, and call evidence",
+            "Positioning and message architecture for the priority journey",
+            "Conversion-path and priority-page blueprint",
+            "Open questions, conflicts, and evidence gaps that still need human judgment",
+        ],
+        "deliverables": [
+            "Buyer and offer synthesis with evidence citations",
+            "Positioning and message architecture",
+            "Conversion-path and priority-page blueprint",
+            "Prioritised execution roadmap with handoff notes",
+        ],
+        "how_it_works": [
+            "Kickoff and evidence alignment — confirm the working hypotheses and decision owners.",
+            "Strategy working session — pressure-test buyer, offer, proof, and conversion path.",
+            f"Blueprint review and decision — {company} approves, revises, or rejects the direction before any build work is sold.",
+        ],
+        "client_needs": [
+            "An accountable decision-maker for strategic direction",
+            "Access to current site, sales materials, and proof assets",
+            "Timely feedback at the working session and Blueprint review",
+        ],
+        "after_engagement": [
+            f"{company} leaves with an approved (or explicitly rejected) strategic direction.",
+            "Any later Foundation, Templated WordPress, or CARE proposal must cite this Blueprint decision.",
+            "No implementation work is implied by approving this proposal.",
+        ],
+        "closing_note": (
+            f"This proposal gives {company} a clear, reusable strategic decision—not a premature rebuild commitment."
+        ),
+        "_contact": contact,
+        "_role": role,
+    }
+
+
+def _apply_blueprint_override(result: dict, ai_product: str) -> None:
+    if ai_product == "SimpliBlueprint":
+        return
+    profile = LEAD_PROFILES[result["id"]]
+    company = result["company_name"]
+    result["route_decision"] = "optional_blueprint"
+    result["route_decision_summary"] = (
+        f"Human override: strategist selected SimpliBlueprint instead of {ai_product}. "
+        "Strategic clarity should be settled before implementation."
+    )
+    alternatives = [
+        {
+            "name": ai_product,
+            "not_selected_because": "Human override selected SimpliBlueprint before commercial approval.",
+        }
+    ]
+    result["recommendation"].update({
+        "product": "SimpliBlueprint",
+        "summary": f"SimpliBlueprint — strategy before build (human override from {ai_product}).",
+        "rationale": "Authorised reviewer overrode the AI route to SimpliBlueprint.",
+        "alternatives": alternatives,
+        "alternatives_not_selected": [f"{item['name']}: {item['not_selected_because']}" for item in alternatives],
+        "readiness": {"strategic": "ready", "commercial": "ready", "proposal": "ready"},
+        "route_decision": "optional_blueprint",
+    })
+    _fill_scope(result, SCENARIO_CONTENT["cedar-strategy"]["scope"])
+    result["pricing"].update({
+        "currency": "USD",
+        "total": BLUEPRINT_PRICE,
+        "recommended_price": BLUEPRINT_PRICE,
+        "route_rationale": SCENARIO_CONTENT["cedar-strategy"]["price"],
+    })
+    result["pricing"].pop("foundation_rationale", None)
+    result["pricing"].pop("internal_rationale", None)
+    draft = _blueprint_proposal_for(company, profile["contact_name"], profile["contact_role"])
+    _fill_proposal(result, "SimpliBlueprint", draft)
+
+def _find(jid):
+    item = next((x for x in _fixture_rows() if x["id"] == jid), None)
+    if item is not None:
+        _hydrate_state(jid, item)
+    return item
+
+def list_journeys():
+    journeys = [get_journey(item["id"]) for item in _fixture_rows()]
+    for journey in journeys:
+        journey["pricing"].pop("foundation_rationale", None)
+    return journeys
+
+def get_journey(jid):
+    item = _find(jid)
+    if item is None:
+        return None
+    result = deepcopy(item)
+    if "assessment" in result:
+        raise ValueError("Invalid governed fixture: use diagnostic/recommendation")
+    ai_product = result["recommendation"]["product"]
+    _complete_fixture_shape(result)
+    result["synthetic"] = True
+    result["ai_product"] = ai_product
+    if "foundation_rationale" in result["pricing"]:
+        result["pricing"]["internal_rationale"] = result["pricing"]["foundation_rationale"]
+    result["proposal"].pop("foundation_rationale", None)
+    result["proposal"].pop("internal_rationale", None)
+    state = _state.get(jid, {"completed": [], "revealed": [], "approval_history": [], "toast": ""})
+    if state.get("transcript_text"):
+        result["diagnostic"]["uploaded_transcript"] = state["transcript_text"]
+    override = state.get("route_override")
+    result["route_override"] = override
+    if override == "SimpliBlueprint":
+        _apply_blueprint_override(result, ai_product)
+    completed = state["completed"]
+    result["recommended_product"] = result["recommendation"]["product"] if "approve_recommendation" in completed else None
+    result["workflow"] = {
+        "current_stage": STAGES[len(completed)] if len(completed) < len(STAGES) else "complete",
+        "completed_stages": completed,
+        "revealed_stages": state["revealed"],
+        "approval_history": state["approval_history"],
+        "toast": state["toast"],
+    }
+    result["hubspot"] = {"lifecycle_stage": "Proposal sent" if "approve_proposal" in completed else "Lead"}
+    return result
+
+
+def _complete_fixture_shape(result):
+    """Normalize the deterministic fixture into the dashboard's artifact contract."""
+    product = result["recommendation"]["product"]
+    profile = LEAD_PROFILES[result["id"]]
+    scenario = SCENARIO_CONTENT[result["id"]]
+    result["company_name"] = profile["company_name"]
+    result["prospect"].update({
+        key: value
+        for key, value in profile.items()
+        if key not in {"campaign", "headline", "score", "dimensions", "company_name"}
+    })
+    governing_documents = {
+        "scoreapp": ("GOV-001", "Assessment intake and evidence governance"),
+        "diagnostic": ("DSG-001", "Executive Marketing Diagnostic"),
+        "questionnaire": ("DSG-001", "Personalized diagnostic questionnaire"),
+        "recommendation": ("ENG-001", "Engagement recommendation rules"),
+        "scope": ("ENG-001", "Engagement scope rules"),
+        "pricing": ("PRICE-001", "Pricing and margin-validation rules"),
+        "proposal": ("GOV-001", "Proposal approval governance"),
+    }
+    for name in ("scoreapp", "diagnostic", "questionnaire", "recommendation", "scope", "pricing", "proposal"):
+        artifact = result[name]
+        artifact.setdefault("title", name.replace("_", " ").title())
+        artifact.setdefault("summary", artifact.get("title", "Synthetic artifact"))
+        evidence = artifact.get("evidence", [])
+        artifact["evidence"] = [
+            {
+                "id": e if isinstance(e, str) else e["id"],
+                "source_type": "synthetic_fixture",
+                "quote": "Synthetic record for POC validation.",
+                "evidence_status": "synthetic",
+                "synthetic_label": "FICTIONAL — NOT A REAL CLIENT",
+            }
+            for e in evidence
+        ] or [
+            {
+                "id": f"SYN-{result['id']}-{name}",
+                "source_type": "synthetic_fixture",
+                "quote": "Synthetic record for POC validation.",
+                "evidence_status": "synthetic",
+                "synthetic_label": "FICTIONAL — NOT A REAL CLIENT",
+            }
+        ]
+        document_id, title = governing_documents[name]
+        governance = artifact.setdefault("governance", {})
+        governance.setdefault("evidence_status", "synthetic")
+        governance.setdefault("ai_confidence", "high")
+        default_citations = [{"document_id": document_id, "version": "v1.0", "title": title}]
+        if name == "recommendation":
+            default_citations.insert(0, {"document_id": "GOV-001", "version": "v1.0", "title": "Commercial decision governance"})
+        governance.setdefault("citations", default_citations)
+        governance.setdefault("open_questions", [])
+        governance.setdefault("conflicts", [])
+    route_meta = ROUTE_META[result["id"]]
+    result["route_decision"] = route_meta["route_decision"]
+    result["route_decision_summary"] = route_meta["route_decision_summary"]
+    result["scoreapp"].update({
+        "title": "SimpliSignals self-assessment",
+        "campaign_context": profile["campaign"],
+        "headline": profile["headline"],
+        "overall_score": profile["score"],
+        "dimensions": [{"name": name, "score": score} for name, score in profile["dimensions"]],
+    })
+    diagnostic_title, hypotheses, questions = scenario["diagnostic"]
+    result["diagnostic"].update({
+        "title": diagnostic_title,
+        "summary": "Working hypotheses for a human-led Diagnostic. These are not a root-cause finding or commercial decision.",
+        "hypotheses": hypotheses,
+        "open_questions": questions,
+    })
+    result["questionnaire"]["questions"] = [
+        {
+            "classification": classification,
+            "reason": reason,
+            "question": question,
+            "answer": answer,
+            "prompt": question,
+            "returned_answer": answer,
+        }
+        for classification, reason, question, answer in scenario["questions"]
+    ]
+    alternatives = route_meta["alternatives"]
+    result["recommendation"].update({
+        "summary": route_meta["recommendation_summary"],
+        "rationale": f"{product} is the proposed route after the synthetic Diagnostic, questionnaire, and human review.",
+        "alternatives": alternatives,
+        "alternatives_not_selected": [f"{item['name']}: {item['not_selected_because']}" for item in alternatives],
+        "readiness": {"strategic": "ready", "commercial": "ready", "proposal": "ready"},
+        "route_decision": route_meta["route_decision"],
+    })
+    _fill_scope(result, scenario["scope"])
+    result["pricing"].update({
+        "currency": "USD",
+        "recommended_price": result["pricing"]["total"],
+        "route_rationale": scenario["price"],
+    })
+    _fill_proposal(result, product, PROPOSALS[result["id"]])
+
+
 def apply_action(jid, action, role, actor, reason, edits=None):
     item = _find(jid)
-    if item is None: raise KeyError(jid)
-    if action not in STAGES: raise ValueError("Unsupported journey action")
+    if item is None:
+        raise KeyError(jid)
     state = _state.setdefault(jid, {"completed": [], "revealed": [], "approval_history": [], "toast": ""})
     expected = STAGES[len(state["completed"])] if len(state["completed"]) < len(STAGES) else None
-    if action != expected: raise RuntimeError(f"Next required action is {expected}")
-    if action in APPROVALS and role != "Authorized SimpliCreative reviewer": raise RuntimeError("Approval requires role Authorized SimpliCreative reviewer")
+
+    if action == "override_route":
+        if expected != "approve_recommendation":
+            raise RuntimeError(f"Route override is only available at approve_recommendation (next is {expected})")
+        if role != "Authorized SimpliCreative reviewer":
+            raise RuntimeError("Approval requires role Authorized SimpliCreative reviewer")
+        raw = None if not edits else edits.get("route_override")
+        if raw in (None, "", "ai", "none"):
+            state.pop("route_override", None)
+            state["toast"] = "AI recommendation restored"
+            logger.info(
+                "route_override_cleared journey_id=%s actor=%s reason=%s",
+                jid,
+                actor,
+                reason or "",
+            )
+        elif raw == "SimpliBlueprint":
+            state["route_override"] = "SimpliBlueprint"
+            state["toast"] = "Route overridden to SimpliBlueprint"
+            logger.info(
+                "route_override_applied journey_id=%s product=SimpliBlueprint actor=%s reason=%s",
+                jid,
+                actor,
+                reason or "",
+            )
+        else:
+            raise ValueError("Only SimpliBlueprint override is supported in this POC")
+        _persist_state(jid, item, state)
+        return get_journey(jid)
+
+    if action not in STAGES:
+        raise ValueError("Unsupported journey action")
+    if action != expected:
+        raise RuntimeError(f"Next required action is {expected}")
+    if action in APPROVALS and role != "Authorized SimpliCreative reviewer":
+        raise RuntimeError("Approval requires role Authorized SimpliCreative reviewer")
     if action == "import_transcript" and edits and isinstance(edits.get("transcript_text"), str):
         transcript = edits["transcript_text"].strip()
         if transcript:
             state["transcript_text"] = transcript
     state["completed"].append(action)
-    if action.startswith("reveal_"): state["revealed"].append(action.removeprefix("reveal_"))
-    if action in APPROVALS: state["approval_history"].append({"stage": APPROVALS[action], "role": role, "actor": actor, "reason": reason, "timestamp": datetime.now(timezone.utc).isoformat()})
+    if action.startswith("reveal_"):
+        state["revealed"].append(action.removeprefix("reveal_"))
+    if action in APPROVALS:
+        approval_reason = reason
+        if action == "approve_recommendation" and state.get("route_override"):
+            approval_reason = (
+                f"{reason} | route_override={state['route_override']}".strip(" |")
+                if reason
+                else f"route_override={state['route_override']}"
+            )
+        state["approval_history"].append({
+            "stage": APPROVALS[action],
+            "role": role,
+            "actor": actor,
+            "reason": approval_reason,
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        })
     state["toast"] = f"{action.replace('_', ' ').title()} complete"
-    if store.use_supabase():
-        base = deepcopy(item)
-        base["workflow"] = {
-            "completed_stages": list(state["completed"]),
-            "revealed_stages": list(state["revealed"]),
-            "approval_history": list(state["approval_history"]),
-            "toast": state["toast"],
-            **({"transcript_text": state["transcript_text"]} if state.get("transcript_text") else {}),
-        }
-        store.save_journey_payload(jid, base)
+    _persist_state(jid, item, state)
     return get_journey(jid)

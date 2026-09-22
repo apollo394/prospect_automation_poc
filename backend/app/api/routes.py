@@ -8,6 +8,7 @@ from app.dependencies.auth import AuthUser, require_user
 from app.schemas.models import (
     AnalyzeCallRequest,
     AssessmentAction,
+    BlueprintAction,
     CommercialAction,
     QuestionAction,
     JourneyAction,
@@ -15,6 +16,7 @@ from app.schemas.models import (
 from app.services import (
     analysis_service,
     assessment_service,
+    blueprint_service,
     commercial_service,
     intake_service,
     prospect_service,
@@ -48,6 +50,34 @@ def journey_action(journey_id: str, body: JourneyAction, user: AuthUser = Depend
         return journey_service.apply_action(journey_id, body.action, body.role, actor, body.reason, body.edits)
     except KeyError as exc:
         raise HTTPException(status_code=404, detail="Journey not found") from exc
+    except RuntimeError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+
+@protected.get("/blueprints")
+def get_blueprints():
+    return blueprint_service.list_blueprints()
+
+
+@protected.get("/blueprints/{blueprint_id}")
+def get_blueprint(blueprint_id: str):
+    result = blueprint_service.get_blueprint(blueprint_id)
+    if result is None:
+        raise HTTPException(status_code=404, detail="Blueprint engagement not found")
+    return result
+
+
+@protected.post("/blueprints/{blueprint_id}/actions")
+def blueprint_action(blueprint_id: str, body: BlueprintAction, user: AuthUser = Depends(require_user)):
+    actor = body.actor or user.email
+    try:
+        return blueprint_service.apply_action(
+            blueprint_id, body.action, body.role, actor, body.reason, body.edits
+        )
+    except KeyError as exc:
+        raise HTTPException(status_code=404, detail="Blueprint engagement not found") from exc
     except RuntimeError as exc:
         raise HTTPException(status_code=409, detail=str(exc)) from exc
     except ValueError as exc:

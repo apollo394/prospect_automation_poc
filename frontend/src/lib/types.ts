@@ -47,6 +47,9 @@ export type JourneyAction =
   | "reveal_proposal"
   | "approve_proposal";
 
+/** Pipeline stages plus non-advancing side actions (e.g. route override). */
+export type JourneyApiAction = JourneyAction | "override_route";
+
 export type JourneyWorkflow = {
   current_stage: JourneyAction | "complete";
   completed_stages: JourneyAction[];
@@ -67,6 +70,9 @@ export type GovernedJourney = {
   recommended_product: string | null;
   route_decision?: "optional_blueprint" | "direct_to_implementation";
   route_decision_summary?: string;
+  route_override?: "SimpliBlueprint" | null;
+  /** Fixture AI recommendation before any human route override. */
+  ai_product?: string;
   synthetic: boolean;
   synthetic_disclaimer: string;
   prospect: Record<string, unknown>;
@@ -83,4 +89,53 @@ export type GovernedJourney = {
   proposal: GovernedArtifact;
   workflow: JourneyWorkflow;
   hubspot: { lifecycle_stage: string };
+};
+
+export type BlueprintAction =
+  | "activate_blueprint"
+  | "generate_blueprint_questionnaire"
+  | "validate_questionnaire"
+  | "complete_research"
+  | "approve_intelligence"
+  | "approve_draft_report"
+  | "approve_strategy_deck"
+  | "complete_strategy_session"
+  | "approve_final_blueprint"
+  | "approve_handoff";
+
+export type BlueprintWorkflow = {
+  current_stage: BlueprintAction | "complete";
+  completed_stages: BlueprintAction[];
+  approval_history: Array<{
+    stage: string;
+    role: string;
+    actor: string;
+    reason: string;
+    timestamp: string;
+  }>;
+  toast?: string;
+};
+
+export type BlueprintEngagement = {
+  id: string;
+  company_name: string;
+  synthetic: boolean;
+  synthetic_disclaimer: string;
+  unlocked: boolean;
+  linked_acquisition_journey_id?: string | null;
+  always_unlocked?: boolean;
+  stage_labels: string[];
+  workflow: BlueprintWorkflow;
+  activation: GovernedArtifact & { record?: Record<string, unknown>; cumulative_context?: Record<string, unknown> };
+  questionnaire: GovernedArtifact & {
+    gold_standard_ref?: string;
+    questions?: Array<Record<string, unknown>>;
+  };
+  research: GovernedArtifact & Record<string, unknown>;
+  intelligence: GovernedArtifact & Record<string, unknown>;
+  draft_report: GovernedArtifact & Record<string, unknown>;
+  strategy_deck: GovernedArtifact & Record<string, unknown>;
+  strategy_session: GovernedArtifact & Record<string, unknown>;
+  final_blueprint: GovernedArtifact & Record<string, unknown>;
+  handoff: GovernedArtifact & Record<string, unknown>;
 };

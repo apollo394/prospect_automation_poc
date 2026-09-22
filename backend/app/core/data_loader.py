@@ -80,6 +80,11 @@ def governed_journeys() -> list[dict]:
     return deepcopy(load_json("governed_journeys.json"))
 
 
+@lru_cache(maxsize=1)
+def blueprint_engagements() -> list[dict]:
+    return deepcopy(load_json("blueprint_engagements.json"))
+
+
 # Mutable runtime state for demo approve/edit flows
 _runtime: dict[str, Any] = {
     "analysis_complete": set(),
@@ -111,10 +116,14 @@ def clear_data_cache() -> None:
     frameworks.cache_clear()
     knowledge_sources.cache_clear()
     governed_journeys.cache_clear()
+    blueprint_engagements.cache_clear()
 
 
 def reset_governed_runtime() -> None:
     """Clear cached governed fixtures and runtime journey state."""
     governed_journeys.cache_clear()
-    from app.services import journey_service
+    blueprint_engagements.cache_clear()
+    from app.services import journey_service, blueprint_service
+
     journey_service.reset_runtime()
+    blueprint_service.reset_runtime()

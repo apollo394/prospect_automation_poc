@@ -294,7 +294,38 @@ class AnalyzeCallRequest(BaseModel):
 
 
 class JourneyAction(BaseModel):
-    action: Literal["prepare_diagnostic", "import_transcript", "generate_questionnaire", "review_returned_questionnaire", "approve_recommendation", "approve_scope", "reveal_pricing", "approve_pricing", "reveal_proposal", "approve_proposal"]
+    action: Literal[
+        "prepare_diagnostic",
+        "import_transcript",
+        "generate_questionnaire",
+        "review_returned_questionnaire",
+        "override_route",
+        "approve_recommendation",
+        "approve_scope",
+        "reveal_pricing",
+        "approve_pricing",
+        "reveal_proposal",
+        "approve_proposal",
+    ]
+    role: str = "Authorized SimpliCreative reviewer"
+    actor: str = "synthetic-reviewer"
+    reason: str = ""
+    edits: Optional[dict[str, Any]] = None
+
+
+class BlueprintAction(BaseModel):
+    action: Literal[
+        "activate_blueprint",
+        "generate_blueprint_questionnaire",
+        "validate_questionnaire",
+        "complete_research",
+        "approve_intelligence",
+        "approve_draft_report",
+        "approve_strategy_deck",
+        "complete_strategy_session",
+        "approve_final_blueprint",
+        "approve_handoff",
+    ]
     role: str = "Authorized SimpliCreative reviewer"
     actor: str = "synthetic-reviewer"
     reason: str = ""

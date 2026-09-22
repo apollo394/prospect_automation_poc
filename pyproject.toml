@@ -11,6 +11,8 @@ dependencies = [
     "python-dotenv==1.1.0",
     "python-multipart==0.0.32",
     "uvicorn[standard]==0.52.4",
+    "PyJWT[crypto]==2.10.1",
+    "supabase==2.15.1",
 ]
 
 # FastAPI package lives under backend/app — tell the language server where imports resolve.

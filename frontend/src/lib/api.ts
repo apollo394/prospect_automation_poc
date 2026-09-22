@@ -197,8 +197,8 @@ export type Proposal = {
   knowledge_note: string;
 };
 
-import type { GovernedJourney, JourneyAction } from "@/lib/types";
-export type { GovernedJourney, JourneyAction } from "@/lib/types";
+import type { BlueprintAction, BlueprintEngagement, GovernedJourney, JourneyAction, JourneyApiAction } from "@/lib/types";
+export type { BlueprintAction, BlueprintEngagement, GovernedJourney, JourneyAction, JourneyApiAction } from "@/lib/types";
 
 type CommercialActionBody = {
   action: string;
@@ -260,7 +260,7 @@ export const api = {
   journeyAction: async (
     id: string,
     body: {
-      action: JourneyAction;
+      action: JourneyApiAction;
       actor?: string;
       role?: "Authorized SimpliCreative reviewer";
       reason?: string;
@@ -273,6 +273,25 @@ export const api = {
     });
     if (typeof window !== "undefined") window.dispatchEvent(new Event("sc-journey-updated"));
     return journey;
+  },
+  blueprints: () => request<BlueprintEngagement[]>("/api/blueprints"),
+  blueprint: (id: string) => request<BlueprintEngagement>(`/api/blueprints/${id}`),
+  blueprintAction: async (
+    id: string,
+    body: {
+      action: BlueprintAction;
+      actor?: string;
+      role?: "Authorized SimpliCreative reviewer";
+      reason?: string;
+      edits?: Record<string, unknown>;
+    }
+  ) => {
+    const engagement = await request<BlueprintEngagement>(`/api/blueprints/${id}/actions`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    });
+    if (typeof window !== "undefined") window.dispatchEvent(new Event("sc-blueprint-updated"));
+    return engagement;
   },
   prospects: () => request<Prospect[]>("/api/prospects"),
   prospect: (id: string) =>
